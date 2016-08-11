@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appBackground"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/card_corner_radius">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:padding="4dp"
+                android:text="@string/emp_info"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/imptxt_txt_size"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_itshint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/company"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_company"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_itshint"
+                    android:layout_toRightOf="@+id/txt_itshint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:text="Mobilyte"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_deprt_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/department"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_departmnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_deprt_hint"
+                    android:layout_toRightOf="@+id/txt_deprt_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_roll_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/role"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_roll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_roll_hint"
+                    android:layout_toRightOf="@+id/txt_roll_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_shift_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/shift"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_shift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_shift_hint"
+                    android:layout_toRightOf="@+id/txt_shift_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="@dimen/card_corner_radius">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:padding="4dp"
+                android:text="@string/emp_uses_info"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/imptxt_txt_size"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_code_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/emp_code"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_emp_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/txt_code_hint"
+                    android:layout_toRightOf="@+id/txt_code_hint"
+                    android:gravity="end"
+                    android:padding="4dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_doj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="@string/doj"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_doj_val"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/txt_doj"
+                    android:layout_toRightOf="@+id/txt_doj"
+                    android:gravity="end"
+                    android:padding="4dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_emp_email_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/emp_email"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_emp_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_emp_email_hint"
+                    android:layout_toRightOf="@+id/txt_emp_email_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_officl_email_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/official_email"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_officl_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_officl_email_hint"
+                    android:layout_toRightOf="@+id/txt_officl_email_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_dob_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/dob"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_dob"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_dob_hint"
+                    android:layout_toRightOf="@+id/txt_dob_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="@dimen/card_corner_radius">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:padding="4dp"
+                android:text="@string/reporting"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/imptxt_txt_size"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_reportng_to_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/reporting_to"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_reportng_to"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_reportng_to_hint"
+                    android:layout_toRightOf="@+id/txt_reportng_to_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_reportng_tome_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/reporting_to_me"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_reportng_tome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_reportng_tome_hint"
+                    android:layout_toRightOf="@+id/txt_reportng_tome_hint"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

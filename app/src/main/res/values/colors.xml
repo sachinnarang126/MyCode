@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8BC34A</color>
+    <color name="colorPrimaryDark">#80689F38</color><!--7CB342 689F38 Darker green-->
+    <color name="colorAccent">#78909C</color>
+    <color name="colorFragmentBack">#E5E5E5</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="blue">#06416B</color>
+    <color name="true_green">#4DBD33</color>
+    <color name="appBackground">#E8E7ED</color>
+    <color name="seperatorView">#aaa</color>
+    <color name="toolbar_green">#8dc641</color>
+    <color name="gray">#78909C</color>
+    <color name="red">#ff0000</color>
+</resources>

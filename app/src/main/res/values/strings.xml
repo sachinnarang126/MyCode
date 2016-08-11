@@ -1,0 +1,231 @@
+<resources>
+    <string name="app_name">True HR</string>
+
+    // log in
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+
+    //every image content description
+    <string name="content_description">This is image</string>
+
+    <!-- HomeActivity -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    //context names
+    <string name="splash">Splash</string>
+
+    //Navigation items and Fragments Tags
+    <string name="dashborad">Dashborad</string>
+    <string name="my_attendance">My Attendance</string>
+    <string name="attendance_requests">Attendance Request</string>
+    <string name="leave_requests">Leave Requests</string>
+    <string name="to_do_list">To Do List</string>
+    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+    <string name="tickets">Tickets</string>
+    <string name="happening_today">Happening Today</string>
+    <string name="birthday">Birthday</string>
+    <string name="anniversary">Anniversary</string>
+    <string name="new_joinee">New Joinee</string>
+    <string name="manager_punch_request_fragment">ManagerPunchRequestsFragment</string>
+    <string name="my_punch_request">MyPunchReq</string>
+    <string name="list_open">open</string>
+    <string name="list_close">close</string>
+
+    ///toolbar title
+    <string name="attendance">Attendance</string>
+    <string name="post_detail">Post Detail</string>
+    <string name="add_post">Add Post</string>
+    <string name="birthday_heading">Birthday Celebration Today</string>
+    <string name="aniversary_heading">Work Anniversaries Today</string>
+    <string name="new_joinee_heading">New Joiners</string>
+    <string name="view_attendence_request">My Attendance Request</string>
+    <string name="title_activity_navigation_item_base">Navigation_item_base</string>
+
+    <string name="title">Title</string>
+    <string name="post_content">Post Content</string>
+    <string name="reason">Reason</string>
+    <string name="ok">OK</string>
+
+    <!-- error strings -->
+    <string name="error_internet">Please check internet connection</string>
+    <string name="error_no_response">Server Error</string>
+    <string name="enter_user_name">Please enter user name</string>
+    <string name="enter_password">Please enter password</string>
+
+    <!--Strings related to HomeScreen-->
+    <string name="back_pressed">BackPressed</string>
+    <string name="load_fragment">LoadFragment</string>
+
+    <!--common text -->
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
+    <string name="approved">Approved</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="cancel">Cancel</string>
+    <string name="rejected">Rejected</string>
+    <string name="no_record">No Record Found</string>
+    <string name="applied_on">AppliedOn:</string>
+    <string name="add_comment">Add Comment</string>
+    <string name="punch_miss">Punch Miss</string>
+    <string name="miss">miss</string>
+    <string name="hint_add_comment">Add Comment&#8230;</string>
+
+    <!--profile txts -->
+    <string name="emp_info">Employee Information</string>
+    <string name="company">Company:</string>
+    <string name="shift">Shift:</string>
+    <string name="role">Role:</string>
+    <string name="department">Department:</string>
+
+    <!--persnl tab-->
+    <string name="permanent_address_">Permanent Address:</string>
+    <string name="current_address_">Current Address:</string>
+    <string name="sex">sex:</string>
+    <string name="father">Father\'s name:</string>
+    <string name="mother">Mother\'s name:</string>
+
+    <!--icon_profile tabs-->
+    <string name="professional">Professional</string>
+    <string name="personal">Personal</string>
+    <string name="basic">basic</string>
+    <string name="leave">Leave</string>
+    <string name="emp_uses_info">Employee Uses Information</string>
+    <string name="emp_code">Code:</string>
+    <string name="doj">Date of joining:</string>
+    <string name="emp_email">Employee Email:</string>
+    <string name="official_email">Official Email:</string>
+    <string name="dob">Date of birth:</string>
+    <string name="personal_contact">Personal Contact NO:</string>
+    <string name="official_contact">Official Contact NO:</string>
+    <string name="reporting_to">Reporting To:</string>
+    <string name="reporting_to_me">Reporting To Me:</string>
+
+    <!--leave-->
+    <string name="leave_summery">Leave Summery</string>
+    <string name="casual_leave">Casual Leave</string>
+    <string name="balanced">Balance</string>
+    <string name="carried_over">Carried Over</string>
+    <string name="earned_lv">Earned Leave</string>
+    <string name="sick_lv">Sick Leave</string>
+    <string name="taken">Taken</string>
+    <string name="entitled">Entitled</string>
+    <string name="reporting">Reporting</string>
+    <string name="team_member">Team Member</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="load_more">Load More</string>
+    <string name="date">Date</string>
+    <string name="time_in">Time In</string>
+    <string name="time_out">Time Out</string>
+    <string name="status">Status</string>
+    <string name="employee_name">Employee Name</string>
+    <string name="cl">CL</string>
+    <string name="sl">SL</string>
+    <string name="el">EL</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="contact_no">Contact No</string>
+    <string name="hint_address">Address(During Leave)</string>
+    <string name="father_name">Father\'s Name</string>
+    <string name="mother_name">Mother\'s name</string>
+    <string name="permanent_address">Permanent Address</string>
+    <string name="current_address">Current Address</string>
+    <string name="family_details">Family Details</string>
+
+    <!--post detail-->
+    <string name="comments">Comments</string>
+    <string name="likes">Likes</string>
+
+    <!--Tabs Heading-->
+    <string name="team">Team</string>
+    <string name="others">Others</string>
+
+    <!-- Toast Text-->
+    <string name="enter_content">Please enter post content</string>
+    <string name="enter_description">Please enter post desription</string>
+    <string name="success">Success</string>
+    <string name="server_error">Server error</string>
+    <string name="madatory_fields">All fields are mandatory</string>
+    <string name="submit_success">Submitted successfully</string>
+    <string name="error_add_leave">You don\'t have permission to add leave</string>
+    <string name="error_image">Image not available</string>
+    <string name="enter_comment">Please enter comment</string>
+    <string name="error_view_profile">You don\'t have permission to view profile</string>
+    <string name="error_approve_leave">You don\'t have permission approve leave</string>
+    <string name="error_reject_leave">You don\'t have permission reject leave</string>
+    <string name="error_applied_leave">You don\'t have permission to view applied leaves</string>
+    <string name="invalid_user">Invalid user</string>
+    <string name="error_edit_attendance">You don\'t have the permission to edit attendance</string>
+    <string name="error_view_attendance">You don\'t have permission to view attendance</string>
+    <string name="error_edit_profile">You don\'t have permission to edit profile</string>
+    <string name="error_camera">Don\'t have permission to Access Camera"</string>
+    <string name="error_read_write_file">Don\'t have permission to read write external storage"</string>
+    <string name="error_permission">Permission required to perform this action"</string>
+    <string name="error_gallery">Don\'t have permission to Access Gallery</string>
+    <string name="empty_punch">Please enter reason</string>
+    <string name="error_punch_miss">You can\'t apply for punch miss</string>
+    <string name="error_no_record">No Record Found</string>
+    <string name="error_approve_attendance">You don\'t have permission to approve attendance</string>
+    <string name="error_reject_attendance">"You don\'t have permission to reject attendance</string>
+    <string name="error_view_applied_attendance">You don\'t have permission to view applied attendance</string>
+    <string name="error_edit_other_attendance">You can not edit other persons\'s attendance</string>
+    <string name="error_comment_delete">You can\'t delete this comment</string>
+    <string name="error_delete_comment">Error in deleting comment</string>
+
+    <string name="valid_contact_no">Enter a valid contact number</string>
+    <string name="leave_type">Please select leave type</string>
+    <string name="start_date">Please select start date</string>
+    <string name="end_date">Please select end date</string>
+    <string name="start_day_type">Please select start day type</string>
+    <string name="end_day_type">Please select end day type</string>
+    <string name="select_incharge">Please select person incharge</string>
+    <string name="enter_reason">Please enter reason</string>
+    <string name="enter_address">Please enter address</string>
+    <string name="error_date">End date must be equal to or greater than start date</string>
+    <string name="error_start_date">Start date must be grater than or equal end date</string>
+
+    <string name="package_project">xyz.trueprojects</string>
+    <string name="package_crm">xyz.truecrm</string>
+    <string name="package_talent">xyz.truetalent</string>
+
+    <string name="send_to">Open With</string>
+    <string name="trueproject">Complete Project Management Software for Agile Teams.</string>
+    <string name="truecrm">Simple,Powerful CRM software for small teams.</string>
+    <string name="truehr">Future-ready HR management Software.</string>
+    <string name="hr">True HR</string>
+    <string name="crm">True CRM</string>
+    <string name="project">True Projects</string>
+    <string name="product">Try our other products</string>
+    <string name="talent">True Talent</string>
+    <string name="truetalent">Easy talent management and recruitment</string>
+    <string name="error_user_name">Please enter user name</string>
+    <string name="error_password">Please enter password</string>
+
+
+    <array name="month_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/lay_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="4dp">
+
+                <com.github.siyamed.shapeimageview.RoundedImageView
+                    android:id="@+id/user_pic"
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_centerInParent="true"
+                    android:padding="24dp"
+                    android:src="@drawable/icon_profile"
+                    app:siBorderColor="@android:color/white"
+                    app:siBorderWidth="1dp"
+                    app:siRadius="100dp"
+                    app:siSquare="true" />
+
+                <ImageButton
+                    android:id="@+id/icn_edit_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/user_pic"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginLeft="-20dp"
+                    android:layout_marginStart="-20dp"
+                    android:layout_toEndOf="@+id/user_pic"
+                    android:layout_toRightOf="@id/user_pic"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="@string/app_name"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lay_img"
+                android:background="@color/white"
+                app:tabIndicatorColor="@color/gray"
+                app:tabSelectedTextColor="@color/colorPrimaryDark"
+                app:tabTextColor="@color/gray" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewpager_profl_tab"
+                android:layout_width="match_parent"
+                android:layout_height="470dp"
+                android:layout_below="@+id/tabs_profile" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_profile"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+</RelativeLayout>

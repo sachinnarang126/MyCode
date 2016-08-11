@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="@color/appBackground"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp">
+
+        <com.github.siyamed.shapeimageview.RoundedImageView
+            android:id="@+id/post_user_picture"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_profile"
+            app:siBorderColor="@color/toolbar_green"
+            app:siBorderWidth="1dp"
+            app:siRadius="50dp"
+            app:siSquare="true" />
+
+        <TextView
+            android:id="@+id/post_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/post_user_picture"
+            android:layout_toLeftOf="@+id/likes_img"
+            android:layout_toRightOf="@id/post_user_picture"
+            android:layout_toStartOf="@+id/likes_img"
+            android:gravity="start"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/toolbar_green"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/post_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_user_name"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/post_user_picture"
+            android:layout_toLeftOf="@+id/likes_img"
+            android:layout_toRightOf="@+id/post_user_picture"
+            android:layout_toStartOf="@+id/likes_img"
+            android:drawableLeft="@drawable/ic_clock"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_clock"
+            android:gravity="start"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="10sp" />
+
+        <ImageView
+            android:id="@+id/likes_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/app_name"
+            android:padding="8dp"
+            android:src="@drawable/ic_unlike"
+            android:tag="like" />
+
+        <TextView
+            android:id="@+id/post_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_user_picture"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorAccent"
+            android:maxLines="2"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/post_text">
+
+            <TextView
+                android:id="@+id/post_text_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="6"
+                android:textSize="12sp" />
+        </ScrollView>
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/post_detail_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/gray"
+        app:tabSelectedTextColor="@color/colorPrimaryDark"
+        app:tabTextColor="@color/gray" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/post_detail_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/post_detail_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>
