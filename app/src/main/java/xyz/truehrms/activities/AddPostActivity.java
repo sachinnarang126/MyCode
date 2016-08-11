@@ -31,6 +31,7 @@ public class AddPostActivity extends AppBaseCompatActivity {
         setContentView(R.layout.activity_add_post);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        String data;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.add_post));
