@@ -111,8 +111,8 @@ public class AddPostActivity extends AppBaseCompatActivity {
                         intent.putExtra("post_added", true);
                         setResult(10, intent);
                         finish();
-                        isServiceExecuting = false;
                     }
+                    isServiceExecuting = false;
                 }
 
                 @Override
