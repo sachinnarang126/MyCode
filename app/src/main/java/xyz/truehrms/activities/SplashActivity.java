@@ -68,7 +68,7 @@ public class SplashActivity extends AppBaseCompatActivity {
                             preferences.setStatus(Constant.IS_TOKEN_GOT, true);
                             preferences.saveAvatar(obj.getAvatar().trim());
                             preferences.saveUserDetails(Constant.USER_DETAIL_OBJ, obj);
-                            if (obj.getRolename().trim().equalsIgnoreCase("Superadmin") || obj.getId() == 7/*obj.getRoleId() == Constant.SUPER_ADMIN || obj.getRoleId() == Constant.ADMIN*/) {
+                            if (obj.getRolename().trim().equalsIgnoreCase("Superadmin") /*|| obj.getId() == 7*//*obj.getRoleId() == Constant.SUPER_ADMIN || obj.getRoleId() == Constant.ADMIN*/) {
                                 getPreference().setHasAdminControl(true);
                                 Intent in = new Intent(SplashActivity.this, DashboardActivity.class);
                                 startActivity(in);

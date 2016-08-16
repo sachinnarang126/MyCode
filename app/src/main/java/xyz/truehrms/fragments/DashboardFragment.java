@@ -371,7 +371,7 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                getActivity().finish();
+//                                getActivity().finish();
                             }
                         })
                         .setCancelable(false)

@@ -7,9 +7,9 @@ android {
     defaultConfig {
         applicationId "xyz.truehrms"
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
-        versionName "THRA_v0.02_080916"
+        versionName "THRA_v0.03_081616"
     }
     buildTypes {
         release {

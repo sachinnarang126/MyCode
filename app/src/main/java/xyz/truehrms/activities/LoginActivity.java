@@ -202,7 +202,7 @@ public class LoginActivity extends AppBaseCompatActivity {
                                             preferences.saveAvatar(obj.getAvatar().trim());
                                             preferences.saveUserDetails(Constant.USER_DETAIL_OBJ, obj);
 
-                                            if (obj.getRolename().trim().equalsIgnoreCase("Superadmin") || obj.getId() == 7/*obj.getRoleId() == Constant.SUPER_ADMIN || obj.getRoleId() == Constant.ADMIN*/) {
+                                            if (obj.getRolename().trim().equalsIgnoreCase("Superadmin") /*|| obj.getId() == 7*//*obj.getRoleId() == Constant.SUPER_ADMIN || obj.getRoleId() == Constant.ADMIN*/) {
                                                 getPreference().setHasAdminControl(true);
                                                 manageProgressBar(false);
                                                 Intent in = new Intent(LoginActivity.this, DashboardActivity.class);
