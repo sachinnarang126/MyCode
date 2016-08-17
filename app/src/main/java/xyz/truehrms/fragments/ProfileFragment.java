@@ -174,7 +174,7 @@ public class ProfileFragment extends AppCompatFragment {
                     if (response.isSuccessful()) {
                         if (response.body().getStatusCode() == 200.0) {
                             EmployeeInfo.Result result = response.body().getResult();
-                            //result.getEmpcode()
+
                             addFragmentForViewPager(result.getEmail(), result.getDob(), 1, result.getReportingTo(),
                                     new ArrayList<>(result.getReportingtome()), result.getShiftname(), result.getFathername(), result.getMothername(),
                                     result.getAddress1(), result.getAddress2(), result.getSex(), result.getDesignationDesignation1(), result.getDivisionname(), result.getDoj());
