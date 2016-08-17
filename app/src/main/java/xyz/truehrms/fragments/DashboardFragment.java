@@ -107,6 +107,8 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
             fab.setVisibility(View.VISIBLE);
             getPunchInDetails();
             getPosts();
+        } else {
+            ((DashboardActivity)getActivity()).showToast("You don't have permission to view post");
         }
     }
 

@@ -107,7 +107,7 @@ public class ApplyLeave {
         private float leavedays;
         @SerializedName("empcode")
         @Expose
-        private int empcode;
+        private String empcode;
         @SerializedName("typeofleave")
         @Expose
         private int typeofleave;
@@ -225,14 +225,14 @@ public class ApplyLeave {
         /**
          * @return The empcode
          */
-        public int getEmpcode() {
+        public String getEmpcode() {
             return empcode;
         }
 
         /**
          * @param empcode The empcode
          */
-        public void setEmpcode(int empcode) {
+        public void setEmpcode(String empcode) {
             this.empcode = empcode;
         }
 
