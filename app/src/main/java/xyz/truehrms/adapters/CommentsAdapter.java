@@ -51,7 +51,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-//        ((TestViewHolder) holder).textView.setText(items.get(position));
         if (mCommentList.get(position).getCommentDate() != null) {
             String toParse;
             try {
@@ -66,9 +65,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
                 e.printStackTrace();
             }
         }
+
         if (mCommentList.get(position).getEmpName() != null) {
             holder.mCommentBy.setText(mCommentList.get(position).getEmpName().equalsIgnoreCase("") ? "NA" : mCommentList.get(position).getEmpName());
         }
+
         if (mCommentList.get(position).getComment() != null) {
             holder.mCommentText.setText(mCommentList.get(position).getComment().equalsIgnoreCase("") ? "NA" : Html.fromHtml(mCommentList.get(position).getComment()));
         }
