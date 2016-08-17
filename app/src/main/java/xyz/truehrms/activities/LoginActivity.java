@@ -18,9 +18,9 @@ import xyz.truehrms.bean.Permissions;
 import xyz.truehrms.bean.TokenData;
 import xyz.truehrms.bean.ValidateResponse;
 import xyz.truehrms.dataholder.DataHolder;
+import xyz.truehrms.parameters.User;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.User;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.utils.Preferences;
 
@@ -28,6 +28,7 @@ public class LoginActivity extends AppBaseCompatActivity {
     private String token;
     private ProgressBar progressBar;
     private EditText edt_password, edt_username;
+    private Button btnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class LoginActivity extends AppBaseCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.login_progress);
         edt_username = (EditText) findViewById(R.id.edt_username);
         edt_password = (EditText) findViewById(R.id.edt_password);
-        Button btnSignIn = (Button) findViewById(R.id.btn_signin);
+        btnSignIn = (Button) findViewById(R.id.btn_signin);
 
         final String deviceID = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -49,14 +50,8 @@ public class LoginActivity extends AppBaseCompatActivity {
                     } else if (edt_password.getText().toString().trim().length() == 0) {
                         showToast(getString(R.string.error_password));
                     } else {
-                        if (isInternetAvailable()) {
-                            hideKeyboard();
-                            getToken(edt_password.getText().toString().trim(), RetrofitClient.getRetrofitClient(), deviceID);
-//                            passwordSandwich(edt_password.getText().toString().trim(), Constant.SALT, deviceID, RetrofitClient.getRetrofitClient());
-//                            performLogin(edt_password.getText().toString().trim(), RetrofitClient.getRetrofitClient());
-                        } else {
-                            showToast(getString(R.string.error_internet));
-                        }
+                        hideKeyboard();
+                        getToken(edt_password.getText().toString().trim(), RetrofitClient.getRetrofitClient(), deviceID);
                     }
                 }
             });
@@ -84,72 +79,6 @@ public class LoginActivity extends AppBaseCompatActivity {
         return String.format("%4x", new BigInteger(1, arg.getBytes()));
     }*/
 
-    /*private void performLogin(String password, final RetrofitApiService apiService) {
-        final User user = new User();
-        user.setUser_email(edt_username.getText().toString().trim());
-        user.setPassword(password);
-        token = "D04B843A-E587-47AD-B167-6BA558B85B94";
-        user.setToken("a152e84173914146e4bc4f391sd0f686ebc4f31");
-        user.setIp_address("10.20.3.133");
-        user.setMac_address("00-22-19-1A-F8-02");
-        user.setUser_agent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0");
-
-        Call<ValidateResponse> callTokenData = apiService.validateToken(token, user);
-        getPreference().saveToken(Constant.TOKEN, token);
-        putServiceCallInServiceMap(callTokenData, Constant.VALIDATE_TOKEN);
-
-        if (isInternetAvailable()) {
-            callTokenData.enqueue(new Callback<ValidateResponse>() {
-                @Override
-                public void onResponse(Call<ValidateResponse> call, Response<ValidateResponse> response) {
-                    if (response.isSuccessful()) {
-                        if (response.body().getStatusCode() == 200.0) {
-
-                            ValidateResponse.Result obj = response.body().getResult();
-                            getPreference().setStatus(Constant.IS_TOKEN_GOT, true);
-                            getPreference().saveUser(Constant.SAVE_USER, user);
-                            getPreference().saveAvatar(Constant.AVATAR, obj.getAvatar());
-                            getPreference().saveUserDetails(Constant.USER_DETAIL_OBJ, obj);
-
-                            if (obj.getRolename().trim().equalsIgnoreCase("Superadmin") *//*obj.getRoleId() == Constant.SUPER_ADMIN || obj.getRoleId() == Constant.ADMIN*//*) {
-                                getPreference().setHasAdminControl(true);
-                                manageProgressBar(false);
-                                Intent in = new Intent(LoginActivity.this, DashboardActivity.class);
-                                startActivity(in);
-                                finish();
-                            } else {
-                                // get permissions for user if user is not admin/super admin
-                                getPreference().setHasAdminControl(false);
-                                getPermissions(obj.getUserID(), token, apiService);
-                            }
-                            *//*getPreference().setHasAdminControl(true);
-                            manageProgressBar(false);
-                            Intent in = new Intent(LoginActivity.this, DashboardActivity.class);
-                            startActivity(in);
-                            finish();
-*//*
-                        } else {
-                            manageProgressBar(false);
-                            showToast(response.body().getErrors().toString());
-                        }
-                    } else {
-                        manageProgressBar(false);
-                        showToast(getString(R.string.server_error));
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ValidateResponse> call, Throwable t) {
-                    t.printStackTrace();
-                    manageProgressBar(false);
-                }
-            });
-        } else {
-            manageProgressBar(false);
-            showToast(getString(R.string.error_internet));
-        }
-    }*/
-
 
     public void getToken(String sandwich, final RetrofitApiService apiService, String deviceID) {
         final String pass = sandwich;
@@ -162,6 +91,7 @@ public class LoginActivity extends AppBaseCompatActivity {
         putServiceCallInServiceMap(callData, Constant.GET_TOKEN);
 
         if (isInternetAvailable()) {
+            manageProgressBar(true);
             callData.enqueue(new Callback<TokenData>() {
                 @Override
                 public void onResponse(Call<TokenData> call, Response<TokenData> response) {
@@ -183,7 +113,6 @@ public class LoginActivity extends AppBaseCompatActivity {
                         user.setMac_address("00-22-19-1A-F8-02");
                         user.setUser_agent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0");
 
-//                        callData.clone();
                         Call<ValidateResponse> callTokenData = apiService.validateToken(token, user);
                         putServiceCallInServiceMap(callTokenData, Constant.VALIDATE_TOKEN);
 
@@ -289,8 +218,14 @@ public class LoginActivity extends AppBaseCompatActivity {
 
     private void manageProgressBar(boolean hasToShowProgressBar) {
         if (hasToShowProgressBar) {
+            btnSignIn.setEnabled(false);
+            edt_password.setEnabled(false);
+            edt_username.setEnabled(false);
             progressBar.setVisibility(View.VISIBLE);
         } else {
+            btnSignIn.setEnabled(true);
+            edt_password.setEnabled(true);
+            edt_username.setEnabled(true);
             progressBar.setVisibility(View.GONE);
         }
     }
