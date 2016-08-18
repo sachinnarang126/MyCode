@@ -152,8 +152,8 @@
     <string name="others">Others</string>
 
     <!-- Toast Text-->
+    <string name="enter_title">Please enter post title</string>
     <string name="enter_content">Please enter post content</string>
-    <string name="enter_description">Please enter post desription</string>
     <string name="success">Success</string>
     <string name="server_error">Server error</string>
     <string name="madatory_fields">All fields are mandatory</string>

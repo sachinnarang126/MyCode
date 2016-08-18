@@ -15,14 +15,14 @@ import retrofit2.Response;
 import xyz.truehrms.R;
 import xyz.truehrms.basecontroller.AppBaseCompatActivity;
 import xyz.truehrms.dataholder.DataHolder;
+import xyz.truehrms.parameters.AddPost;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.AddPost;
 import xyz.truehrms.utils.Constant;
 
 
 public class AddPostActivity extends AppBaseCompatActivity {
-    private EditText etPostContent, et_post_content_description;
+    private EditText etPostContentTitle, et_post_content_description;
     private boolean isServiceExecuting;
 
     @Override
@@ -39,7 +39,7 @@ public class AddPostActivity extends AppBaseCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.icn_close);
 
-        etPostContent = (EditText) findViewById(R.id.et_post_content);
+        etPostContentTitle = (EditText) findViewById(R.id.et_post_content);
         et_post_content_description = (EditText) findViewById(R.id.et_post_content_title);
 
     }
@@ -63,13 +63,12 @@ public class AddPostActivity extends AppBaseCompatActivity {
         switch (item.getItemId()) {
             case R.id.attnd_req_done:
                 if (!isServiceExecuting) {
-                    if (etPostContent.getText().toString().length() == 0) {
+                    if (etPostContentTitle.getText().toString().trim().length() == 0) {
+                        showToast(getString(R.string.enter_title));
+                    } else if (et_post_content_description.getText().toString().trim().length() == 0) {
                         showToast(getString(R.string.enter_content));
-
-                    } else if (et_post_content_description.getText().toString().length() == 0) {
-                        showToast(getString(R.string.enter_description));
                     } else {
-                        addPost(etPostContent.getText().toString(), et_post_content_description.getText().toString());
+                        addPost(etPostContentTitle.getText().toString().trim(), et_post_content_description.getText().toString().trim());
                     }
                 }
                 return true;
@@ -105,7 +104,7 @@ public class AddPostActivity extends AppBaseCompatActivity {
                 @Override
                 public void onResponse(Call<xyz.truehrms.bean.AddPost> call, Response<xyz.truehrms.bean.AddPost> response) {
                     if (response.isSuccessful()) {
-                        etPostContent.setText("");
+                        etPostContentTitle.setText("");
                         et_post_content_description.setText("");
                         Intent intent = getIntent();
                         intent.putExtra("post_added", true);

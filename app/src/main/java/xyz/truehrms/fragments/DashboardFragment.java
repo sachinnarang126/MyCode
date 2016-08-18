@@ -117,8 +117,15 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         super.onActivityResult(requestCode, resultCode, data);
         if (null != data) {
             if (requestCode == REQUEST_CODE_ADD_POST && data.hasExtra("post_added")) {
-                if (data.getBooleanExtra("post_added", false))
-                    getPosts();
+                if (data.getBooleanExtra("post_added", false)){
+                    if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
+                        getPosts();
+                    } else if (((DashboardActivity) getActivity()).hasPermission(Constant.DASHBOARD_VIEW)) {
+                        getPosts();
+                    } else {
+                        ((DashboardActivity)getActivity()).showToast("You don't have permission to view post");
+                    }
+                }
             }
         }
     }

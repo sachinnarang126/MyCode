@@ -112,6 +112,8 @@ public class EventFragment extends AppCompatFragment {
                         } else {
                             ((DashboardActivity) getActivity()).showToast(getString(R.string.no_record));
                         }
+                    } else {
+                        ((DashboardActivity) getActivity()).showToast(getString(R.string.no_record));
                     }
                     progress.setVisibility(View.GONE);
                 }
