@@ -365,14 +365,11 @@ public class ProfileFragment extends AppCompatFragment {
                         profilePic.setImageBitmap(Profile);
                     }*/
 
-                    if (thumbnail != null) {
-                        profilePic.setImageBitmap(thumbnail);
-                    }
                     String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), thumbnail, "jhjh", null);
                     Uri selectedImageUri = Uri.parse(path);
                     String mPicturePath = FileUtils.compressImage(getActivity(), selectedImageUri);
                     File file = new File(mPicturePath);
-                    uploadUserImage(file);
+                    uploadUserImage(file, thumbnail);
                 }
             } else if (requestCode == 2) {
 
@@ -396,17 +393,10 @@ public class ProfileFragment extends AppCompatFragment {
                     options.inSampleSize = scale;
                     options.inJustDecodeBounds = false;
                     bm = BitmapFactory.decodeFile(selectedImagePath, options);
-                    /*Bitmap Profile = ((DashboardActivity) getActivity()).getRoundedShapeBitmap(bm, profilePic);
-                    if (Profile != null) {
-                        profilePic.setImageBitmap(Profile);
-                    }*/
 
-                    if (bm != null) {
-                        profilePic.setImageBitmap(bm);
-                    }
                     String mPicturePath = FileUtils.compressImage(getActivity(), selectedImageUri);
                     File file = new File(mPicturePath);
-                    uploadUserImage(file);
+                    uploadUserImage(file, bm);
                 }
 
             } else {
@@ -418,7 +408,7 @@ public class ProfileFragment extends AppCompatFragment {
     }
 
 
-    private void uploadUserImage(final File file) {
+    private void uploadUserImage(final File file, final Bitmap bitmap) {
         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
 
             RetrofitApiService apiService = RetrofitClient.getMultipartRetrofitClient(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN), "acebdf13572468");
@@ -442,6 +432,10 @@ public class ProfileFragment extends AppCompatFragment {
                             jsonObject = new JSONObject(response.body().string());
                             String result = jsonObject.optString("Result");
                             if (result != null) {
+
+                                if (bitmap != null)
+                                    profilePic.setImageBitmap(bitmap);
+
                                 JSONObject jsonObject1 = new JSONObject(result);
                                 String avatar = jsonObject1.optString("avatar").trim();
                                 ((DashboardActivity) getActivity()).userDetailsObj.setAvatar(avatar);
@@ -451,6 +445,8 @@ public class ProfileFragment extends AppCompatFragment {
                         } catch (JSONException | IOException e) {
                             e.printStackTrace();
                         }
+                    } else {
+                        ((DashboardActivity) getActivity()).showToast("Error occurred while uploading image");
                     }
 
                     if (file.exists()) {
@@ -460,6 +456,10 @@ public class ProfileFragment extends AppCompatFragment {
 
                 @Override
                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                    ((DashboardActivity) getActivity()).showToast("Error occurred while uploading image");
                     t.printStackTrace();
                 }
             });
