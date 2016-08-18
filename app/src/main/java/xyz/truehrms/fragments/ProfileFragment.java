@@ -418,18 +418,19 @@ public class ProfileFragment extends AppCompatFragment {
     }
 
 
-    private void uploadUserImage(File file) {
+    private void uploadUserImage(final File file) {
         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
 
             RetrofitApiService apiService = RetrofitClient.getMultipartRetrofitClient(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN), "acebdf13572468");
-            RequestBody empcode, Filename, requestBody;
+            RequestBody empcode, filename, requestBody;
 
             requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
             //   MultipartBody.Part is used to send also the actual file name
             MultipartBody.Part body = MultipartBody.Part.createFormData("EmployeePic", file.getName(), requestBody);
-            Filename = RequestBody.create(MediaType.parse("multipart/form-data"), "filename.png");
+            filename = RequestBody.create(MediaType.parse("multipart/form-data"), "filename.png");
             empcode = RequestBody.create(MediaType.parse("multipart/form-data"), String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()));
-            Call<ResponseBody> call = apiService.upload(body, empcode, Filename);
+            Call<ResponseBody> call = apiService.upload(body, empcode, filename);
 
             putServiceCallInServiceMap(call, Constant.EDIT_PROFILE_PIC);
             call.enqueue(new Callback<ResponseBody>() {
@@ -451,6 +452,10 @@ public class ProfileFragment extends AppCompatFragment {
                             e.printStackTrace();
                         }
                     }
+
+                    if (file.exists()) {
+                        file.delete();
+                    }
                 }
 
                 @Override
@@ -461,6 +466,5 @@ public class ProfileFragment extends AppCompatFragment {
         } else {
             ((DashboardActivity) getActivity()).showToast(getString(R.string.error_internet));
         }
-
     }
 }
