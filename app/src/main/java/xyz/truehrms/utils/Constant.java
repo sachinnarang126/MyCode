@@ -6,7 +6,6 @@ public class Constant {
     public static final String BASE_URL = "http://104.40.63.102:8096/api/";
     //    public static final String BASE_URL = "http://10.20.1.17:8094/api/";
     public static final String GET_TOKEN = "AppToken/GetToken";
-    //    public static final String VALIDATE_TOKEN = "PortalAuthentication/ValidateWithEmployeeDetails";
     public static final String VALIDATE_TOKEN = "PortalAuthentication/ValidateWithSingleSignOnWithApi";
     public static final String GET_EMP = "Dashboard/getEmployee";
     public static final String GET_EMPLOYEE_PERMISSION = "Employee/getPermissionForEmployee";
@@ -18,7 +17,6 @@ public class Constant {
     public static final String GET_LEAVE_TYPES = "Leaves/getLeaveTypes";
     public static final String GET_LEAVE_DAYS_TYPE = "Leaves/getLeaveDaysType";
     public static final String GET_PERSON_IN_CHARGE = "Leaves/getPersonIncharge";
-    //    public static final String GET_LEAVE_SUMMERY = "LeaveSummary/getLeaveSummary";
     public static final String GET_LEAVE_SUMMERY = "Leaves/getLeaveSummary";
     public static final String APPLY_LEAVE = "Leaves/applyLeave";
     public static final String GET_OCCASIONS = "Dashboard/getOccasions";
