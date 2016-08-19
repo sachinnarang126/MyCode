@@ -142,11 +142,6 @@ public class LoginActivity extends AppBaseCompatActivity {
                                                 getPreference().setHasAdminControl(false);
                                                 getPermissions(obj.getUserID(), token, apiService);
                                             }
-                                            /*getPreference().setHasAdminControl(true);
-                                            manageProgressBar(false);
-                                            Intent in = new Intent(LoginActivity.this, DashboardActivity.class);
-                                            startActivity(in);
-                                            finish();*/
 
                                         } else {
                                             manageProgressBar(false);
