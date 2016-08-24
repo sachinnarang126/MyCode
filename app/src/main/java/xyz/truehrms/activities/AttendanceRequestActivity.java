@@ -1,18 +1,15 @@
 package xyz.truehrms.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
@@ -23,7 +20,6 @@ import xyz.truehrms.dataholder.DataHolder;
 import xyz.truehrms.fragments.ApplyLeaveFragment;
 import xyz.truehrms.fragments.ApplyPunchMissFragment;
 import xyz.truehrms.utils.Constant;
-import xyz.truehrms.widgets.CustomViewPager;
 
 public class AttendanceRequestActivity extends AppBaseCompatActivity {
     public ValidateResponse.Result userDetailsObj;
@@ -49,28 +45,36 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
         }
 
         tabLayout = (TabLayout) findViewById(R.id.attnd_req_tab);
-        CustomViewPager customViewPager = (CustomViewPager) findViewById(R.id.attnd_req_pager);
-
-        applyPunchMissFragment = new ApplyPunchMissFragment();
+//        CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.attnd_req_pager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.attnd_req_pager);
         applyLeaveFragment = new ApplyLeaveFragment();
 
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
-
-        fragmentArrayList.add(applyPunchMissFragment);
         fragmentArrayList.add(applyLeaveFragment);
 
-        AttendanceRequestPagerAdapter viewAttendanceRequestPagerAdapter = new AttendanceRequestPagerAdapter(getSupportFragmentManager(), fragmentArrayList);
-        customViewPager.setAdapter(viewAttendanceRequestPagerAdapter);
-        tabLayout.setupWithViewPager(customViewPager);
+        AttendanceRequestPagerAdapter viewAttendanceRequestPagerAdapter;
 
-        tabLayout.getTabAt(0).setText(getString(R.string.punch_miss));
-        tabLayout.getTabAt(1).setText(getString(R.string.leave));
-        Intent intent = getIntent();
-        boolean isFromFab = intent.getBooleanExtra("isFromFab", false);
-        if (isFromFab) {
-            customViewPager.setCurrentItem(1);
+        if (!getIntent().getBooleanExtra("isFromFab", false)) {
+            applyPunchMissFragment = new ApplyPunchMissFragment();
+            fragmentArrayList.add(applyPunchMissFragment);
+            viewAttendanceRequestPagerAdapter = new AttendanceRequestPagerAdapter(getSupportFragmentManager(), fragmentArrayList);
+            viewPager.setAdapter(viewAttendanceRequestPagerAdapter);
+            tabLayout.setupWithViewPager(viewPager);
+            tabLayout.getTabAt(0).setText(getString(R.string.punch_miss));
+            tabLayout.getTabAt(1).setText(getString(R.string.leave));
+            tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, android.R.color.white));
+        } else {
+            viewAttendanceRequestPagerAdapter = new AttendanceRequestPagerAdapter(getSupportFragmentManager(), fragmentArrayList);
+            viewPager.setAdapter(viewAttendanceRequestPagerAdapter);
+            tabLayout.setupWithViewPager(viewPager);
+            tabLayout.getTabAt(0).setText(getString(R.string.leave));
+            tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, android.R.color.transparent));
+        }
+
+        /*if (isFromFab) {
+            viewPager.setCurrentItem(1);
             // stop view pager swipe
-            customViewPager.setSwipeable(false);
+            viewPager.setSwipeable(false);
             /// stop tab selection
             LinearLayout tabStrip = ((LinearLayout) tabLayout.getChildAt(0));
             tabStrip.setEnabled(false);
@@ -83,9 +87,9 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
                 });
             }
         } else {
-            customViewPager.setCurrentItem(0);
-            customViewPager.setSwipeable(true);
-        }
+            viewPager.setCurrentItem(0);
+            viewPager.setSwipeable(true);
+        }*/
     }
 
     @Override
@@ -113,27 +117,37 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.attnd_req_done:
-                int selectedTabPosition = tabLayout.getSelectedTabPosition();
 
-                if (getPreference().hasAdminControl()) {
-                    if (selectedTabPosition == 0) {
-                        applyPunchMissFragment.callService();
-                    } else {
-                        if (!isExecutingService()) {
+                if (!getIntent().getBooleanExtra("isFromFab", false)) {
+                    int selectedTabPosition = tabLayout.getSelectedTabPosition();
+
+                    if (getPreference().hasAdminControl()) {
+                        if (selectedTabPosition == 0) {
+                            applyPunchMissFragment.callPunchMissService();
+                        } else if (!isExecutingService()) {
                             applyLeaveFragment.callApplyLeaveService();
                         }
-                    }
-                } else {
-                    if (hasPermission(Constant.APPLY_LEAVE_EDIT)) {
-                        if (selectedTabPosition == 0) {
-                            applyPunchMissFragment.callService();
-                        } else {
-                            if (!isExecutingService()) {
-                                applyLeaveFragment.callApplyLeaveService();
-                            }
-                        }
                     } else {
-                        showToast(getString(R.string.error_add_leave));
+                        if (hasPermission(Constant.APPLY_LEAVE_EDIT)) {
+                            if (selectedTabPosition == 0) {
+                                applyPunchMissFragment.callPunchMissService();
+                            } else if (!isExecutingService())
+                                applyLeaveFragment.callApplyLeaveService();
+                        } else {
+                            showToast(getString(R.string.error_add_leave));
+                        }
+                    }
+
+                } else {
+
+                    if (getPreference().hasAdminControl() && !isExecutingService()) {
+                        applyLeaveFragment.callApplyLeaveService();
+                    } else {
+                        if (hasPermission(Constant.APPLY_LEAVE_EDIT)) {
+                            if (!isExecutingService())
+                                applyLeaveFragment.callApplyLeaveService();
+                        } else
+                            showToast(getString(R.string.error_add_leave));
                     }
                 }
                 break;

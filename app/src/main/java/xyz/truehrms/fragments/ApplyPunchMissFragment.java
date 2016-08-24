@@ -24,9 +24,9 @@ import retrofit2.Response;
 import xyz.truehrms.R;
 import xyz.truehrms.activities.AttendanceRequestActivity;
 import xyz.truehrms.basecontroller.AppCompatFragment;
+import xyz.truehrms.parameters.PunchMiss;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.PunchMiss;
 import xyz.truehrms.utils.Constant;
 
 public class ApplyPunchMissFragment extends AppCompatFragment implements View.OnClickListener {
@@ -189,7 +189,7 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
         return null;
     }
 
-    public void callService() {
+    public void callPunchMissService() {
 //        if (isTimeIn || isTimeOut) {
         if (((AttendanceRequestActivity) getActivity()).isInternetAvailable()) {
             ((AttendanceRequestActivity) getActivity()).setIsExecutingService(true);

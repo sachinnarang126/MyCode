@@ -45,12 +45,16 @@
                 app:tabSelectedTextColor="@color/white"
                 app:tabTextColor="@color/colorFragmentBack" />
 
-            <xyz.truehrms.widgets.CustomViewPager
+            <!--<xyz.truehrms.widgets.CustomViewPager
                 android:id="@+id/attnd_req_pager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" />-->
 
-            </xyz.truehrms.widgets.CustomViewPager>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/attnd_req_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </LinearLayout>
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

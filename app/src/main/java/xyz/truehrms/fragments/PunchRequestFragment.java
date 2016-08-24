@@ -34,6 +34,7 @@ public class PunchRequestFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.view_attnd_req_tab);
         boolean hasManagerPermission = false;
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getActivity(), android.R.color.white));
         if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
             fragmentArrayList.add(new MyPunchRequestFragment());
             teamPunchRequestFragment = new TeamPunchRequestFragment();

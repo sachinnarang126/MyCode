@@ -38,6 +38,7 @@ public class LeaveRequestFragment extends Fragment {
 
         final MyLeaveRequestFragment myLeaveRequestFragment;
         TeamLeaveRequestFragment teamLeaveRequestFragment = null;
+        view_leave_req_tab.setSelectedTabIndicatorColor(ContextCompat.getColor(getActivity(), android.R.color.white));
 
         if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
             myLeaveRequestFragment = new MyLeaveRequestFragment();
