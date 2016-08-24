@@ -221,7 +221,7 @@ public class LoginActivity extends AppBaseCompatActivity {
             btnSignIn.setEnabled(true);
             edt_password.setEnabled(true);
             edt_username.setEnabled(true);
-            progressBar.setVisibility(View.GONE);
+            progressBar.setVisibility(View.INVISIBLE);
         }
     }
 }

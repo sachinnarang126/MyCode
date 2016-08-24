@@ -161,7 +161,7 @@ public class AllAttendance {
             private int id;
             @SerializedName("empcode")
             @Expose
-            private int empcode;
+            private String empcode;
             @SerializedName("logintime")
             @Expose
             private String logintime;
@@ -215,14 +215,14 @@ public class AllAttendance {
             /**
              * @return The empcode
              */
-            public int getEmpcode() {
+            public String getEmpcode() {
                 return empcode;
             }
 
             /**
              * @param empcode The empcode
              */
-            public void setEmpcode(int empcode) {
+            public void setEmpcode(String empcode) {
                 this.empcode = empcode;
             }
 

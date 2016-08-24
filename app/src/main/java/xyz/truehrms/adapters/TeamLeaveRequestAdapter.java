@@ -221,13 +221,6 @@ public class TeamLeaveRequestAdapter extends RecyclerView.Adapter<TeamLeaveReque
 
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setTitle("Enter Reason");
-        /*TextView title = new TextView(context);
-        // You Can Customise your Title here
-        title.setText("Enter Reason");
-        title.setGravity(Gravity.CENTER);
-        title.setPadding(0, 12, 0, 0);
-        title.setTextSize(18);
-        alertDialog.setCustomTitle(title);*/
 
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_alert, null);
         alertDialog.setView(view);

@@ -193,7 +193,6 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
 //        if (isTimeIn || isTimeOut) {
         if (((AttendanceRequestActivity) getActivity()).isInternetAvailable()) {
             ((AttendanceRequestActivity) getActivity()).setIsExecutingService(true);
-            progressBar.setVisibility(View.VISIBLE);
             PunchMiss punchMiss = new PunchMiss();
             punchMiss.setPunchDate(serviceDatePattern);
 
@@ -203,6 +202,7 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
             } else {
                 punchMiss.setReason(reason_punch_miss_edt.getText().toString().trim());
             }
+            progressBar.setVisibility(View.VISIBLE);
 
             boolean isTimeOut = false, isTimeIn = false;
             punchMiss.setIspunchout(String.valueOf(isTimeOut));

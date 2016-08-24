@@ -50,13 +50,13 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
         applyLeaveFragment = new ApplyLeaveFragment();
 
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
-        fragmentArrayList.add(applyLeaveFragment);
 
         AttendanceRequestPagerAdapter viewAttendanceRequestPagerAdapter;
 
         if (!getIntent().getBooleanExtra("isFromFab", false)) {
             applyPunchMissFragment = new ApplyPunchMissFragment();
             fragmentArrayList.add(applyPunchMissFragment);
+            fragmentArrayList.add(applyLeaveFragment);
             viewAttendanceRequestPagerAdapter = new AttendanceRequestPagerAdapter(getSupportFragmentManager(), fragmentArrayList);
             viewPager.setAdapter(viewAttendanceRequestPagerAdapter);
             tabLayout.setupWithViewPager(viewPager);
@@ -64,12 +64,14 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
             tabLayout.getTabAt(1).setText(getString(R.string.leave));
             tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, android.R.color.white));
         } else {
+            fragmentArrayList.add(applyLeaveFragment);
             viewAttendanceRequestPagerAdapter = new AttendanceRequestPagerAdapter(getSupportFragmentManager(), fragmentArrayList);
             viewPager.setAdapter(viewAttendanceRequestPagerAdapter);
             tabLayout.setupWithViewPager(viewPager);
             tabLayout.getTabAt(0).setText(getString(R.string.leave));
             tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, android.R.color.transparent));
         }
+
 
         /*if (isFromFab) {
             viewPager.setCurrentItem(1);
