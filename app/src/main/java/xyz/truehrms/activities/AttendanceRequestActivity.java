@@ -36,7 +36,7 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
         attnd_req_toolbar.setTitle(getString(R.string.attendance_requests));
         attnd_req_toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         setSupportActionBar(attnd_req_toolbar);
-        ////////to set close img
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.icn_close);
 
@@ -45,7 +45,6 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
         }
 
         tabLayout = (TabLayout) findViewById(R.id.attnd_req_tab);
-//        CustomViewPager viewPager = (CustomViewPager) findViewById(R.id.attnd_req_pager);
         ViewPager viewPager = (ViewPager) findViewById(R.id.attnd_req_pager);
         applyLeaveFragment = new ApplyLeaveFragment();
 
@@ -71,27 +70,6 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
             tabLayout.getTabAt(0).setText(getString(R.string.leave));
             tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, android.R.color.transparent));
         }
-
-
-        /*if (isFromFab) {
-            viewPager.setCurrentItem(1);
-            // stop view pager swipe
-            viewPager.setSwipeable(false);
-            /// stop tab selection
-            LinearLayout tabStrip = ((LinearLayout) tabLayout.getChildAt(0));
-            tabStrip.setEnabled(false);
-            for (int i = 0; i < tabStrip.getChildCount(); i++) {
-                tabStrip.getChildAt(i).setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        return true;
-                    }
-                });
-            }
-        } else {
-            viewPager.setCurrentItem(0);
-            viewPager.setSwipeable(true);
-        }*/
     }
 
     @Override

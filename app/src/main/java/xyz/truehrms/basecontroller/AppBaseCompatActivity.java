@@ -180,7 +180,7 @@ public abstract class AppBaseCompatActivity extends AppCompatActivity {
      */
 
     final public <T> Call<T> getServiceCallIfExist(String key) {
-        if (!mServiceCallsMap.containsKey(key))
+        if (mServiceCallsMap.containsKey(key))
             return mServiceCallsMap.get(key);
         else
             return null;

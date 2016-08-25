@@ -48,7 +48,7 @@ public class AppCompatFragment extends Fragment {
      * @return Returns the Generic type if exists otherwise null
      */
     final public <T> Call<T> getServiceCallIfExist(String key) {
-        if (!mServiceCallsMap.containsKey(key))
+        if (mServiceCallsMap.containsKey(key))
             return mServiceCallsMap.get(key);
         else
             return null;
