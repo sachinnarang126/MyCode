@@ -35,81 +35,23 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_itshint"
+                    android:id="@+id/txt_emp_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:padding="4dp"
-                    android:text="@string/company"
+                    android:text="@string/emp_id"
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_company"
+                    android:id="@+id/txt_emp_id_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_itshint"
-                    android:layout_toRightOf="@+id/txt_itshint"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:padding="4dp"
-                    android:text="Mobilyte"
-                    android:textSize="@dimen/imptxt_txt_size" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/txt_deprt_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:padding="4dp"
-                    android:text="@string/department"
-                    android:textSize="@dimen/imptxt_txt_size" />
-
-                <TextView
-                    android:id="@+id/txt_departmnt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_deprt_hint"
-                    android:layout_toRightOf="@+id/txt_deprt_hint"
-                    android:gravity="end"
-                    android:maxLines="1"
-                    android:padding="4dp"
-                    android:textSize="@dimen/imptxt_txt_size" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/txt_roll_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:padding="4dp"
-                    android:text="@string/role"
-                    android:textSize="@dimen/imptxt_txt_size" />
-
-                <TextView
-                    android:id="@+id/txt_roll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_roll_hint"
-                    android:layout_toRightOf="@+id/txt_roll_hint"
+                    android:layout_toEndOf="@+id/txt_emp_id"
+                    android:layout_toRightOf="@+id/txt_emp_id"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4dp"
@@ -121,23 +63,80 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_shift_hint"
+                    android:id="@+id/txt_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:padding="4dp"
-                    android:text="@string/shift"
+                    android:text="@string/name"
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_shift"
+                    android:id="@+id/txt_name_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_shift_hint"
-                    android:layout_toRightOf="@+id/txt_shift_hint"
+                    android:layout_toEndOf="@+id/txt_name"
+                    android:layout_toRightOf="@+id/txt_name"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/emp_email"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_email_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_email"
+                    android:layout_toRightOf="@+id/txt_email"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/phone"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_phone_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_phone"
+                    android:layout_toRightOf="@+id/txt_phone"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4dp"
@@ -175,21 +174,49 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_code_hint"
+                    android:id="@+id/txt_designation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:padding="4dp"
-                    android:text="@string/emp_code"
+                    android:text="@string/designation"
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_emp_code"
+                    android:id="@+id/txt_designation_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/txt_code_hint"
-                    android:layout_toRightOf="@+id/txt_code_hint"
+                    android:layout_toEndOf="@+id/txt_designation"
+                    android:layout_toRightOf="@+id/txt_designation"
+                    android:gravity="end"
+                    android:padding="4dp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_department"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/department"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_department_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/txt_department"
+                    android:layout_toRightOf="@+id/txt_department"
                     android:gravity="end"
                     android:padding="4dp"
                     android:singleLine="true"
@@ -227,23 +254,23 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_emp_email_hint"
+                    android:id="@+id/txt_team_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:padding="4dp"
-                    android:text="@string/emp_email"
+                    android:text="@string/team_size"
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_emp_email"
+                    android:id="@+id/txt_team_size_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_emp_email_hint"
-                    android:layout_toRightOf="@+id/txt_emp_email_hint"
+                    android:layout_toEndOf="@+id/txt_team_size"
+                    android:layout_toRightOf="@+id/txt_team_size"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4dp"
@@ -255,23 +282,23 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_officl_email_hint"
+                    android:id="@+id/txt_shift_timing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:padding="4dp"
-                    android:text="@string/official_email"
+                    android:text="@string/shift_timing"
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_officl_email"
+                    android:id="@+id/txt_shift_timing_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_officl_email_hint"
-                    android:layout_toRightOf="@+id/txt_officl_email_hint"
+                    android:layout_toEndOf="@+id/txt_shift_timing"
+                    android:layout_toRightOf="@+id/txt_shift_timing"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4dp"
@@ -283,23 +310,51 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_dob_hint"
+                    android:id="@+id/txt_extension"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:padding="4dp"
-                    android:text="@string/dob"
+                    android:text="@string/extension"
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_dob"
+                    android:id="@+id/txt_extension_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_dob_hint"
-                    android:layout_toRightOf="@+id/txt_dob_hint"
+                    android:layout_toEndOf="@+id/txt_extension"
+                    android:layout_toRightOf="@+id/txt_extension"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textSize="@dimen/imptxt_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:padding="4dp"
+                    android:text="@string/role"
+                    android:textSize="@dimen/imptxt_txt_size" />
+
+                <TextView
+                    android:id="@+id/txt_role_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_toEndOf="@+id/txt_role"
+                    android:layout_toRightOf="@+id/txt_role"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4dp"
@@ -337,23 +392,23 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_reportng_to_hint"
+                    android:id="@+id/txt_manager"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:padding="4dp"
-                    android:text="@string/reporting_to"
+                    android:text="@string/manager"
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_reportng_to"
+                    android:id="@+id/txt_manager_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_reportng_to_hint"
-                    android:layout_toRightOf="@+id/txt_reportng_to_hint"
+                    android:layout_toEndOf="@+id/txt_manager"
+                    android:layout_toRightOf="@+id/txt_manager"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4dp"
@@ -365,7 +420,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/txt_reportng_tome_hint"
+                    android:id="@+id/txt_reporting_to_me"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -375,13 +430,13 @@
                     android:textSize="@dimen/imptxt_txt_size" />
 
                 <TextView
-                    android:id="@+id/txt_reportng_tome"
+                    android:id="@+id/txt_reporting_to_me_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_toEndOf="@+id/txt_reportng_tome_hint"
-                    android:layout_toRightOf="@+id/txt_reportng_tome_hint"
+                    android:layout_toEndOf="@+id/txt_reporting_to_me"
+                    android:layout_toRightOf="@+id/txt_reporting_to_me"
                     android:gravity="end"
                     android:maxLines="1"
                     android:padding="4dp"

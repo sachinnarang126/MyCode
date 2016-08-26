@@ -49,7 +49,7 @@ public class AppCompatFragment extends Fragment {
      */
     final public <T> Call<T> getServiceCallIfExist(String key) {
         if (mServiceCallsMap.containsKey(key))
-            return mServiceCallsMap.get(key);
+            return mServiceCallsMap.get(key).clone();
         else
             return null;
     }

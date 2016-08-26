@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 
+import java.util.Calendar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,21 +25,27 @@ import xyz.truehrms.parameters.EditProfile;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
 import xyz.truehrms.utils.Constant;
+import xyz.truehrms.widgets.CalendarEditText;
 
 public class PersonalInformationFragment extends AppCompatFragment {
     private ImageView persnl_edit;
-    private EditText fathr_nm_edt, edt_mthr, edt_curnt_adr, edt_permnt_adr;
+    private EditText fathr_nm_edt, edt_mthr, edt_curnt_adr, edt_permnt_adr, et_blood_group, et_emergency_contact, et_city;
     private ProgressBar progressBar;
     private RadioButton rb_male, rb_female;
+    private CalendarEditText calender_dob;
 
-    public static PersonalInformationFragment getInstance(String fatherName, String motherName, String curntAdd,
-                                                          String perAdd, int sex) {
+    public static PersonalInformationFragment getInstance(String fatherName, String motherName, String curntAdd, String perAdd,
+                                                          int sex, String dob, String bloodGroup, String emergencyContact, String city) {
         PersonalInformationFragment personalInformationFragment = new PersonalInformationFragment();
         Bundle bundle = new Bundle();
         bundle.putString("fatherName", fatherName);
         bundle.putString("motherName", motherName);
         bundle.putString("curntAdd", curntAdd);
         bundle.putString("perAdd", perAdd);
+        bundle.putString("dob", dob);
+        bundle.putString("bloodGroup", bloodGroup);
+        bundle.putString("emergencyContact", emergencyContact);
+        bundle.putString("city", city);
         bundle.putInt("sex", sex);
         personalInformationFragment.setArguments(bundle);
         return personalInformationFragment;
@@ -46,7 +54,7 @@ public class PersonalInformationFragment extends AppCompatFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_persona_information, container, false);
+        return inflater.inflate(R.layout.fragment_personal_information, container, false);
     }
 
     @Override
@@ -61,15 +69,19 @@ public class PersonalInformationFragment extends AppCompatFragment {
         rb_male = (RadioButton) view.findViewById(R.id.rb_male);
         rb_female = (RadioButton) view.findViewById(R.id.rb_female);
 
+        calender_dob = (CalendarEditText) view.findViewById(R.id.calender_dob);
+        Calendar calendar = Calendar.getInstance();
+        calendar.roll(Calendar.YEAR, -18);
+        calender_dob.setMaxDate(calendar);
+        calender_dob.enableTouch = false;
+
+        et_blood_group = (EditText) view.findViewById(R.id.et_blood_group);
+        et_emergency_contact = (EditText) view.findViewById(R.id.et_emergency_contact);
+        et_city = (EditText) view.findViewById(R.id.et_city);
+
         setTextFilter();
+
         persnl_edit = (ImageView) view.findViewById(R.id.persnl_edit);
-       /* if (sexId == 1) {
-            // txt_sex.setText("Male");
-
-        } else {
-            // txt_sex.setText("Female");
-
-        }*/
         Bundle bundle = getArguments();
 
         if (bundle != null) {
@@ -77,6 +89,11 @@ public class PersonalInformationFragment extends AppCompatFragment {
             fathr_nm_edt.setText(bundle.getString("fatherName"));
             edt_permnt_adr.setText(bundle.getString("perAdd"));
             edt_curnt_adr.setText(bundle.getString("curntAdd"));
+            calender_dob.setText(bundle.getString("dob"));
+            et_blood_group.setText(bundle.getString("bloodGroup"));
+            et_emergency_contact.setText(bundle.getString("emergencyContact"));
+            et_city.setText(bundle.getString("city"));
+
             if (bundle.getInt("sex") == 1) {
                 rb_male.setChecked(true);
                 rb_female.setChecked(false);
@@ -106,28 +123,65 @@ public class PersonalInformationFragment extends AppCompatFragment {
                             fathr_nm_edt.setEnabled(true);
                             rb_male.setEnabled(true);
                             rb_female.setEnabled(true);
+
                             edt_mthr.setFocusableInTouchMode(true);
                             edt_mthr.setEnabled(true);
+
                             edt_permnt_adr.setFocusableInTouchMode(true);
                             edt_permnt_adr.setEnabled(true);
+
                             edt_curnt_adr.setFocusableInTouchMode(true);
                             edt_curnt_adr.setEnabled(true);
 
+                            calender_dob.setFocusableInTouchMode(true);
+                            calender_dob.setEnabled(true);
+                            calender_dob.enableTouch = true;
+
+                            et_blood_group.setFocusableInTouchMode(true);
+                            et_blood_group.setEnabled(true);
+
+                            et_emergency_contact.setFocusableInTouchMode(true);
+                            et_emergency_contact.setEnabled(true);
+
+                            et_city.setFocusableInTouchMode(true);
+                            et_city.setEnabled(true);
+
+
                         } else {
+                            if (!isValidContactNumber(et_emergency_contact.getText().toString().trim())) {
+                                return;
+                            }
                             fathr_nm_edt.setFocusableInTouchMode(false);
                             fathr_nm_edt.setEnabled(false);
+
                             edt_mthr.setFocusableInTouchMode(false);
                             edt_mthr.setEnabled(false);
+
                             edt_permnt_adr.setFocusableInTouchMode(false);
                             edt_permnt_adr.setEnabled(false);
+
                             edt_curnt_adr.setFocusableInTouchMode(false);
                             edt_curnt_adr.setEnabled(false);
+
+                            calender_dob.setFocusableInTouchMode(false);
+                            calender_dob.setEnabled(false);
+                            calender_dob.enableTouch = false;
+
+                            et_blood_group.setFocusableInTouchMode(false);
+                            et_blood_group.setEnabled(false);
+
+                            et_emergency_contact.setFocusableInTouchMode(false);
+                            et_emergency_contact.setEnabled(false);
+
+                            et_city.setFocusableInTouchMode(false);
+                            et_city.setEnabled(false);
+
                             rb_male.setEnabled(false);
                             rb_female.setEnabled(false);
                             v.setTag("show");
                             persnl_edit.setImageResource(R.drawable.edit);
 
-                            callEditProfileService(fathr_nm_edt.getText().toString().trim(), edt_mthr.getText().toString().trim(), edt_curnt_adr.getText().toString().trim(), edt_permnt_adr.getText().toString().trim());
+                            callEditProfileService();
 
                         }
                     } else {
@@ -139,29 +193,67 @@ public class PersonalInformationFragment extends AppCompatFragment {
                         persnl_edit.setImageResource(R.drawable.check);
                         fathr_nm_edt.setFocusableInTouchMode(true);
                         fathr_nm_edt.setEnabled(true);
+
                         edt_mthr.setFocusableInTouchMode(true);
                         edt_mthr.setEnabled(true);
+
                         edt_permnt_adr.setFocusableInTouchMode(true);
                         edt_permnt_adr.setEnabled(true);
+
                         rb_male.setEnabled(true);
                         rb_female.setEnabled(true);
+
                         edt_curnt_adr.setFocusableInTouchMode(true);
                         edt_curnt_adr.setEnabled(true);
 
+                        calender_dob.setFocusableInTouchMode(true);
+                        calender_dob.setEnabled(true);
+                        calender_dob.enableTouch = true;
+
+                        et_blood_group.setFocusableInTouchMode(true);
+                        et_blood_group.setEnabled(true);
+
+                        et_emergency_contact.setFocusableInTouchMode(true);
+                        et_emergency_contact.setEnabled(true);
+
+                        et_city.setFocusableInTouchMode(true);
+                        et_city.setEnabled(true);
+
                     } else {
+                        if (!isValidContactNumber(et_emergency_contact.getText().toString().trim())) {
+                            return;
+                        }
                         fathr_nm_edt.setFocusableInTouchMode(false);
                         fathr_nm_edt.setEnabled(false);
+
                         edt_mthr.setFocusableInTouchMode(false);
                         edt_mthr.setEnabled(false);
+
                         edt_permnt_adr.setFocusableInTouchMode(false);
                         edt_permnt_adr.setEnabled(false);
+
                         rb_male.setEnabled(false);
                         rb_female.setEnabled(false);
+
                         edt_curnt_adr.setFocusableInTouchMode(false);
                         edt_curnt_adr.setEnabled(false);
+
+                        calender_dob.setFocusableInTouchMode(false);
+                        calender_dob.setEnabled(false);
+                        calender_dob.enableTouch = false;
+
+                        et_blood_group.setFocusableInTouchMode(false);
+                        et_blood_group.setEnabled(false);
+
+                        et_emergency_contact.setFocusableInTouchMode(false);
+                        et_emergency_contact.setEnabled(false);
+
+                        et_city.setFocusableInTouchMode(false);
+                        et_city.setEnabled(false);
+
                         v.setTag("show");
                         persnl_edit.setImageResource(R.drawable.edit);
-                        callEditProfileService(fathr_nm_edt.getText().toString().trim(), edt_mthr.getText().toString().trim(), edt_curnt_adr.getText().toString().trim(), edt_permnt_adr.getText().toString().trim());
+                        callEditProfileService();
 
                     }
                 }
@@ -177,7 +269,8 @@ public class PersonalInformationFragment extends AppCompatFragment {
         });
     }
 
-    private void callEditProfileService(String trim, String s, String trim1, String s1) {
+    private void callEditProfileService() {
+
         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
 
             progressBar.setVisibility(View.VISIBLE);
@@ -193,10 +286,16 @@ public class PersonalInformationFragment extends AppCompatFragment {
                 e.printStackTrace();
                 editProfile.setId(-1);
             }
+
             editProfile.setModifiedBy(String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()));
             editProfile.setId(((DashboardActivity) getActivity()).userDetailsObj.getId());
             editProfile.setFatherName(fathr_nm_edt.getText().toString().trim());
             editProfile.setMotherName(edt_mthr.getText().toString().trim());
+            editProfile.setBloodgroup(et_blood_group.getText().toString().trim());
+            editProfile.setCity(et_city.getText().toString().trim());
+            editProfile.setDob(calender_dob.getText().toString().trim());
+            editProfile.setEmergencycontactnumber(et_emergency_contact.getText().toString().trim());
+
             if (rb_female.isChecked()) {
                 editProfile.setSex("2");
             } else {
@@ -220,6 +319,14 @@ public class PersonalInformationFragment extends AppCompatFragment {
                             fathr_nm_edt.setText(result.getFatherName());
                             edt_permnt_adr.setText(result.getAddress2());
                             edt_curnt_adr.setText(result.getAddress1());
+                            try {
+                                calender_dob.setText(result.getDob().split("T")[0]);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            et_blood_group.setText(result.getBloodgroup());
+                            et_emergency_contact.setText(result.getEmergencycontactnumber());
+                            et_city.setText(result.getCity());
                             progressBar.setVisibility(View.GONE);
                         } else {
                             progressBar.setVisibility(View.GONE);
@@ -257,7 +364,8 @@ public class PersonalInformationFragment extends AppCompatFragment {
             public CharSequence filter(CharSequence source, int start, int end,
                                        Spanned dest, int dstart, int dend) {
                 for (int i = start; i < end; i++) {
-                    if (!Character.isLetter(source.charAt(i))) {
+
+                    if (!Character.isLetter(source.charAt(i)) && source.charAt(i) != ' ') {
                         return "";
                     }
                 }
@@ -266,5 +374,14 @@ public class PersonalInformationFragment extends AppCompatFragment {
         };
         fathr_nm_edt.setFilters(new InputFilter[]{filter});
         edt_mthr.setFilters(new InputFilter[]{filter});
+        et_city.setFilters(new InputFilter[]{filter});
+    }
+
+    private boolean isValidContactNumber(String text) {
+        if (!text.isEmpty() && text.length() < 10) {
+            ((DashboardActivity) getActivity()).showToast(getString(R.string.valid_contact_no));
+            return false;
+        }
+        return true;
     }
 }

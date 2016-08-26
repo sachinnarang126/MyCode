@@ -23,6 +23,7 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
 
     private final int MAX_CLICK_DURATION = 200;
     public DatePickerDialog dpd;
+    public boolean enableTouch = true;
     private Activity ctx;
     private long startClickTime;
     private boolean isPopup;
@@ -71,6 +72,8 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
+        if (!enableTouch)
+            return;
         if (focused) {
 //            performFiltering("", 0);
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -141,4 +144,9 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
         if (dpd != null)
             dpd.setMaxDate(calendar);
     }
+
+    /*public void setDate(Calendar calendar) {
+        if (dpd != null)
+            dpd.initialize();
+    }*/
 }

@@ -191,6 +191,9 @@ public class EmployeeInfo {
         @SerializedName("role_id")
         @Expose
         private Object roleId;
+        @SerializedName("rolename")
+        @Expose
+        private String roleName;
         @SerializedName("createdby")
         @Expose
         private int createdby;
@@ -751,6 +754,14 @@ public class EmployeeInfo {
          */
         public void setRoleId(Object roleId) {
             this.roleId = roleId;
+        }
+
+        public String getRoleName() {
+            return roleName;
+        }
+
+        public void setRoleName(String roleName) {
+            this.roleName = roleName;
         }
 
         /**

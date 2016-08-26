@@ -126,14 +126,17 @@ public class ProfileFragment extends AppCompatFragment {
             Picasso.with(getActivity()).cancelRequest(profilePic);
     }
 
-    public void addFragmentForViewPager(String email, String dob, int empCode, String reportng_to,
-                                        ArrayList<String> reportng_tome, String shift, String fatherName, String motherName,
-                                        String currentAddress, String permanentAddress, int sex, String designation, String divisionName, String doj) {
+    public void addFragmentForViewPager(String empCode, String name, String email, String phone, String designation, String department,
+                                        String doj, String teamSize, String shiftTiming, String extension, String role, String manager, ArrayList<String> reportingToMe, String fatherName, String motherName,
+                                        String currentAddress, String permanentAddress, int sex, String dob, String bloodGroup, String emergencyContact, String city) {
         ArrayList<Fragment> fragments = new ArrayList<>();
-        BasicFragment basicFragment = BasicFragment.getInstance(email, dob, empCode, reportng_to, reportng_tome, shift, designation, divisionName, doj);
-        fragments.add(basicFragment);
-        PersonalInformationFragment personalInformationFragment = PersonalInformationFragment.getInstance(fatherName, motherName, currentAddress, permanentAddress, sex);
+        ProfessionalFragment professionalFragment = ProfessionalFragment.getInstance(empCode, name, email, phone, designation, department, doj, teamSize, shiftTiming,
+                extension, role, manager, reportingToMe);
 
+        PersonalInformationFragment personalInformationFragment = PersonalInformationFragment.getInstance(fatherName, motherName,
+                currentAddress, permanentAddress, sex, dob, bloodGroup, emergencyContact, city);
+
+        fragments.add(professionalFragment);
         fragments.add(personalInformationFragment);
         fragments.add(LeaveFragment.getInstance());
 
@@ -143,7 +146,7 @@ public class ProfileFragment extends AppCompatFragment {
         viewPager.setAdapter(profilePagradaptr);
         //set tab with view pager
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setText(R.string.basic);
+        tabLayout.getTabAt(0).setText(R.string.professional);
         tabLayout.getTabAt(1).setText(R.string.personal);
         tabLayout.getTabAt(2).setText(R.string.leave);
         progressBar.setVisibility(View.GONE);
@@ -175,9 +178,14 @@ public class ProfileFragment extends AppCompatFragment {
                         if (response.body().getStatusCode() == 200.0) {
                             EmployeeInfo.Result result = response.body().getResult();
 
-                            addFragmentForViewPager(result.getEmail(), result.getDob(), 1, result.getReportingTo(),
-                                    new ArrayList<>(result.getReportingtome()), result.getShiftname(), result.getFathername(), result.getMothername(),
-                                    result.getAddress1(), result.getAddress2(), result.getSex(), result.getDesignationDesignation1(), result.getDivisionname(), result.getDoj());
+                            addFragmentForViewPager(result.getEmpcode(), result.getFirstname() + " " + result.getLastname(),
+                                    result.getEmail(), result.getPersonalContact(), result.getDesignationDesignation1(),
+                                    result.getDivisionname(), result.getDoj(), String.valueOf(result.getReportingtomecount()),
+                                    result.getShiftname(), String.valueOf(result.getExtension()), result.getRoleName(), result.getReportingTo(),
+                                    new ArrayList<>(result.getReportingtome()), result.getFathername(), result.getMothername(),
+                                    result.getAddress1(), result.getAddress2(), result.getSex(), result.getDob(), result.getBloodgroup(),
+                                    result.getEmergencycontactnumber(), result.getCity());
+
                             String imageUrl = result.getAvatar().trim();
                             updateUserImage(imageUrl);
                             ((DashboardActivity) getActivity()).setDashboardPicture(imageUrl);

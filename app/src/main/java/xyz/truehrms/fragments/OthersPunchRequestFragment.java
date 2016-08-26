@@ -29,9 +29,9 @@ import xyz.truehrms.adapters.MyPunchRequestAdapter;
 import xyz.truehrms.basecontroller.AppCompatFragment;
 import xyz.truehrms.bean.EmployeeListForTeamLead;
 import xyz.truehrms.bean.MyAttendanceRequest;
+import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.widgets.EndlessRecyclerOnScrollListener;
 
@@ -123,6 +123,8 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
         getListOfEmployee("''");
         getAttendanceFromServer(empID, String.valueOf(month + 1), year);
 
+        System.out.println(" empID " + empID);
+
         other_punch_emp_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -131,7 +133,7 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
                 int start = other_punch_emp_name.getText().toString().trim().indexOf("(");
                 int end = other_punch_emp_name.getText().toString().trim().indexOf(")");
                 empID = SelectedText.substring(start + 1, end);
-
+                System.out.println("SelectedText " + SelectedText + " empID " + empID);
                 getAttendanceFromServer(empID, String.valueOf(month + 1), year);
             }
         });

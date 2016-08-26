@@ -83,10 +83,16 @@
 
     <!--profile txts -->
     <string name="emp_info">Employee Information</string>
+    <string name="emp_id">Employee ID:</string>
     <string name="company">Company:</string>
-    <string name="shift">Shift:</string>
-    <string name="role">Role:</string>
+    <string name="shift_timing">Shift Timing:</string>
     <string name="department">Department:</string>
+    <string name="name">Name:</string>
+    <string name="phone">Phone No:</string>
+    <string name="designation">Designation:</string>
+    <string name="team_size">Team Size:</string>
+    <string name="extension">Extension:</string>
+    <string name="role">Role:</string>
 
     <!--persnl tab-->
     <string name="permanent_address_">Permanent Address:</string>
@@ -101,14 +107,13 @@
     <string name="basic">basic</string>
     <string name="leave">Leave</string>
     <string name="emp_uses_info">Employee Uses Information</string>
-    <string name="emp_code">Code:</string>
     <string name="doj">Date of joining:</string>
     <string name="emp_email">Employee Email:</string>
     <string name="official_email">Official Email:</string>
-    <string name="dob">Date of birth:</string>
+    <string name="dob">Date of Birth</string>
     <string name="personal_contact">Personal Contact NO:</string>
     <string name="official_contact">Official Contact NO:</string>
-    <string name="reporting_to">Reporting To:</string>
+    <string name="manager">Manager:</string>
     <string name="reporting_to_me">Reporting To Me:</string>
 
     <!--leave-->
@@ -138,9 +143,13 @@
     <string name="contact_no">Contact No</string>
     <string name="hint_address">Address(During Leave)</string>
     <string name="father_name">Father\'s Name</string>
-    <string name="mother_name">Mother\'s name</string>
+    <string name="mother_name">Mother\'s Name</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="gender">Gender</string>
     <string name="permanent_address">Permanent Address</string>
+    <string name="city">City</string>
     <string name="current_address">Current Address</string>
+    <string name="emergency_contact">Emergency Contact</string>
     <string name="family_details">Family Details</string>
 
     <!--post detail-->

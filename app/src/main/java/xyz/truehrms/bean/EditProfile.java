@@ -115,7 +115,7 @@ public class EditProfile {
         private String address2;
         @SerializedName("city")
         @Expose
-        private Object city;
+        private String city;
         @SerializedName("ModifiedBy")
         @Expose
         private Object ModifiedBy;
@@ -269,14 +269,14 @@ public class EditProfile {
         /**
          * @return The city
          */
-        public Object getCity() {
+        public String getCity() {
             return city;
         }
 
         /**
          * @param city The city
          */
-        public void setCity(Object city) {
+        public void setCity(String city) {
             this.city = city;
         }
 
