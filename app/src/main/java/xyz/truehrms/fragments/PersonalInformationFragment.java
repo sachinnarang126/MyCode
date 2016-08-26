@@ -325,7 +325,9 @@ public class PersonalInformationFragment extends AppCompatFragment {
                                 e.printStackTrace();
                             }
                             et_blood_group.setText(result.getBloodgroup());
-                            et_emergency_contact.setText(result.getEmergencycontactnumber());
+                            if (!result.getEmergencycontactnumber().isEmpty()) {
+                                et_emergency_contact.setText(result.getEmergencycontactnumber());
+                            }
                             et_city.setText(result.getCity());
                             progressBar.setVisibility(View.GONE);
                         } else {
