@@ -103,6 +103,7 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
 
                     if (getPreference().hasAdminControl()) {
                         if (selectedTabPosition == 0) {
+//                            if (applyPunchMissFragment.validateFields())
                             applyPunchMissFragment.callPunchMissService();
                         } else if (!isExecutingService()) {
                             applyLeaveFragment.callApplyLeaveService();
@@ -110,6 +111,7 @@ public class AttendanceRequestActivity extends AppBaseCompatActivity {
                     } else {
                         if (hasPermission(Constant.APPLY_LEAVE_EDIT)) {
                             if (selectedTabPosition == 0) {
+//                                if (applyPunchMissFragment.validateFields())
                                 applyPunchMissFragment.callPunchMissService();
                             } else if (!isExecutingService())
                                 applyLeaveFragment.callApplyLeaveService();

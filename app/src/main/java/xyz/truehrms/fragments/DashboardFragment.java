@@ -163,21 +163,21 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                             EmployeeAttendance.Result rs = response.body().getResult();
                             dashboardPagerFragment.setValue(rs.getPunchIN(), rs.getPunchOUT(), rs.getPunchDate());
                         }
-                    } else {
+                    } /*else {
                         try {
                             if (isAdded() && getActivity() != null)
                                 ((DashboardActivity) getActivity()).showToast(getString(R.string.server_error));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    }
+                    }*/
                 }
 
                 @Override
                 public void onFailure(Call<EmployeeAttendance> call, Throwable t) {
                     try {
-                        if (isAdded() && getActivity() != null)
-                            ((DashboardActivity) getActivity()).showToast(getString(R.string.server_error));
+//                        if (isAdded() && getActivity() != null)
+//                            ((DashboardActivity) getActivity()).showToast(getString(R.string.server_error));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

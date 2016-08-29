@@ -18,6 +18,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,9 +30,9 @@ import xyz.truehrms.adapters.MyLeaveRequestAdapter;
 import xyz.truehrms.basecontroller.AppCompatFragment;
 import xyz.truehrms.bean.EmployeeListForTeamLead;
 import xyz.truehrms.bean.MyLeaveRequests;
+import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.widgets.EndlessRecyclerOnScrollListener;
 
@@ -47,8 +48,9 @@ public class OthersLeaveRequestFragment extends AppCompatFragment implements Ada
     private List<MyLeaveRequests.Result.LeaveListResult> resultList;
     private int spinnerInitCount = 0;
     private int month, currentMonth;
-    private ArrayAdapter adapter_Employee;
-    private List<String> employeeNameList;
+//    private ArrayAdapter adapter_Employee;
+    //    private List<String> employeeNameList;
+    private HashMap<String, String> employeeIDMap;
     private String empID;
     private MyLeaveRequestAdapter myLeaveRequestAdapter;
     private RelativeLayout container_no_data;
@@ -120,10 +122,12 @@ public class OthersLeaveRequestFragment extends AppCompatFragment implements Ada
         otherPunchEmpName.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String SelectedText = otherPunchEmpName.getText().toString().trim();
-                int start = otherPunchEmpName.getText().toString().trim().indexOf("(");
+                String selectedText = otherPunchEmpName.getText().toString().trim();
+                /*int start = otherPunchEmpName.getText().toString().trim().indexOf("(");
                 int end = otherPunchEmpName.getText().toString().trim().indexOf(")");
-                empID = SelectedText.substring(start + 1, end);
+                empID = SelectedText.substring(start + 1, end);*/
+                empID = employeeIDMap.get(selectedText);
+                System.out.println("---------SelectedText " + selectedText + " empID " + empID);
                 callService(empID, String.valueOf(month + 1), year);
 
             }
@@ -155,9 +159,24 @@ public class OthersLeaveRequestFragment extends AppCompatFragment implements Ada
                 public void onResponse(Call<EmployeeListForTeamLead> call, Response<EmployeeListForTeamLead> response) {
                     if (response.isSuccessful()) {
                         if (response.body().getStatusCode() == 200.0) {
-                            employeeNameList = response.body().getResult();
-                            adapter_Employee = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, employeeNameList);
-                            otherPunchEmpName.setAdapter(adapter_Employee);
+                            employeeIDMap = new HashMap<>();
+
+                            for (String data : response.body().getResult()) {
+                                String idArray[] = data.split(" - ");
+                                try {
+                                    employeeIDMap.put(idArray[0], idArray[1]);
+                                } catch (IndexOutOfBoundsException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+//                            employeeNameList = response.body().getResult();
+                            /*adapter_Employee = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, employeeNameList);
+                            otherPunchEmpName.setAdapter(adapter_Employee);*/
+
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList(employeeIDMap.keySet()));
+//                            ArrayAdapter adapter_Employee = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList(employeeIDMap.values()));
+                            otherPunchEmpName.setAdapter(adapter);
                         }
                     }
                 }

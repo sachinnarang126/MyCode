@@ -696,6 +696,6 @@ public class ApplyLeaveFragment extends AppCompatFragment implements AdapterView
 
     private boolean isValidPhoneNumber(CharSequence target) {
 //        return !TextUtils.isEmpty(target) && android.util.Patterns.PHONE.matcher(target).matches();
-        return target.length() > 10;
+        return target.length() == 10;
     }
 }

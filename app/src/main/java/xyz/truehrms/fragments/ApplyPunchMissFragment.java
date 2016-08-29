@@ -31,11 +31,11 @@ import xyz.truehrms.utils.Constant;
 
 public class ApplyPunchMissFragment extends AppCompatFragment implements View.OnClickListener {
     private final int TIME_DIALOG_ID = 1111;
-    private EditText reason_punch_miss_edt;
-    private EditText punch_miss_timeout, punch_miss_date, punch_miss_timein;
+    private EditText punch_miss_timeout, punch_miss_date, punch_miss_timein, reason_punch_miss_edt;
     private ProgressBar progressBar;
     private boolean isTimeInClicked;
     private String serviceDatePattern;
+//    private long timeInMillis, timeOutMillis;
 
     private TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener() {
         @Override
@@ -74,8 +74,10 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
             String date = hour + ":" + strMinute + " " + am_pm;
             if (isTimeInClicked) {
                 punch_miss_timein.setText(date);
+//                timeInMillis = parseTime(hour, minute);
             } else {
                 punch_miss_timeout.setText(date);
+//                timeOutMillis = parseTime(hour, minute);
             }
         }
     };
@@ -113,6 +115,8 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
         punch_miss_date.setText(date);
         punch_miss_timein.setText(timeIn);
         punch_miss_timeout.setText(timeout);
+
+        System.out.println("date = [" + date + "], timeIn = [" + timeIn + "], timeout = [" + timeout + "]");
         /*if (timeout.matches("0:0")) {
             isTimeOut = true;
             punch_miss_timeout.setOnClickListener(this);
@@ -129,6 +133,17 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
             punch_miss_timein.setFocusable(false);
         }*/
 
+        /*if (!timeIn.matches("00:00")) {
+            String arr[] = timeIn.split(":");
+            int hour = Integer.parseInt(arr[0]);
+            int min = Integer.parseInt(arr[1]);
+            timeInMillis = parseTime(hour, min);
+        } else if (!timeout.matches("00:00")) {
+            String arr[] = timeout.split(":");
+            int hour = Integer.parseInt(arr[0]);
+            int min = Integer.parseInt(arr[1]);
+            timeOutMillis = parseTime(hour, min);
+        }*/
     }
 
     @Override
@@ -146,7 +161,7 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
     }
 
     public void setAdditionalParams(String parseDate, String parseTimeout, String parseTimeIn) {
-        if (parseDate != null){
+        if (parseDate != null) {
             String punchFormat = "yyyy-MM-dd'T'HH:mm:ss";
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(punchFormat, Locale.getDefault());
             try {
@@ -259,4 +274,26 @@ public class ApplyPunchMissFragment extends AppCompatFragment implements View.On
             ((AttendanceRequestActivity) getActivity()).showToast(getString(R.string.error_internet));
         }
     }
+
+    /*public boolean validateFields() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(timeInMillis);
+        Calendar calendar1 = Calendar.getInstance();
+        calendar.setTimeInMillis(timeOutMillis);
+
+        System.out.println(" timeOutMillis " + timeOutMillis);
+        System.out.println(" timeInMillis " + timeInMillis);
+        System.out.println("diff " + (timeOutMillis - timeInMillis));
+        if (timeOutMillis - timeInMillis > 7200000) {
+        }
+
+        return false;
+    }*/
+
+    /*private long parseTime(int hour, int min) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.MINUTE, min);
+        calendar.set(Calendar.MINUTE, hour);
+        return calendar.getTimeInMillis();
+    }*/
 }

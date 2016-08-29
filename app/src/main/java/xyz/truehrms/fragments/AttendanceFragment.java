@@ -20,6 +20,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,9 +35,9 @@ import xyz.truehrms.bean.AllAttendance;
 import xyz.truehrms.bean.EmployeeListForTeamLead;
 import xyz.truehrms.bean.TeamForManager;
 import xyz.truehrms.dataholder.DataHolder;
+import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.utils.Constant;
 
 public class AttendanceFragment extends AppCompatFragment {
@@ -48,6 +49,7 @@ public class AttendanceFragment extends AppCompatFragment {
     private String userID, year, currentYear;
     private int currentMonth, month;
     private List<AllAttendance.Result.AaDatum> datumList;
+    private HashMap<String, String> employeeIdMap;
     private AttendanceAdapter attendanceAdapter;
     private RelativeLayout container_no_data;
     private ImageButton img_reload;
@@ -211,10 +213,12 @@ public class AttendanceFragment extends AppCompatFragment {
         emp_name_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String SelectedText = emp_name_list.getText().toString().trim();
-                int start = emp_name_list.getText().toString().trim().indexOf("(");
+                String selectedText = emp_name_list.getText().toString().trim();
+                /*int start = emp_name_list.getText().toString().trim().indexOf("(");
                 int end = emp_name_list.getText().toString().trim().indexOf(")");
-                userID = SelectedText.substring(start + 1, end);
+                userID = SelectedText.substring(start + 1, end);*/
+                userID = employeeIdMap.get(selectedText);
+                System.out.println("-----------SelectedText " + selectedText + " userID " + userID);
                 getAllAttendance(userID, String.valueOf(month + 1), year);
 
             }
@@ -244,8 +248,17 @@ public class AttendanceFragment extends AppCompatFragment {
                 public void onResponse(Call<EmployeeListForTeamLead> call, Response<EmployeeListForTeamLead> response) {
                     if (response.isSuccessful()) {
                         if (response.body().getStatusCode() == 200.0) {
-                            List<String> employNameList = response.body().getResult();
-                            ArrayAdapter<String> adapterEmployee = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, employNameList);
+                            employeeIdMap = new HashMap<String, String>();
+                            for (String data : response.body().getResult()) {
+                                String idArray[] = data.split(" - ");
+                                try {
+                                    employeeIdMap.put(idArray[0], idArray[1]);
+                                } catch (IndexOutOfBoundsException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+//                            List<String> employNameList = response.body().getResult();
+                            ArrayAdapter<String> adapterEmployee = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList(employeeIdMap.keySet()));
                             emp_name_list.setAdapter(adapterEmployee);
                         }
                     }
@@ -286,15 +299,19 @@ public class AttendanceFragment extends AppCompatFragment {
                             if (response.body().getStatusCode() == 200.0) {
                                 List<TeamForManager.Result> teamMemberList = response.body().getResult();
                                 if (teamMemberList != null && teamMemberList.size() > 0) {
-                                    ArrayList<String> teamMemberArrayList = new ArrayList<>();
-                                    teamMemberArrayList.add("All");
+                                    employeeIdMap = new HashMap<String, String>();
+//                                    ArrayList<String> teamMemberArrayList = new ArrayList<>();
+//                                    teamMemberArrayList.add("All");
+
                                     for (int i = 0; i < teamMemberList.size(); i++) {
                                         if (teamMemberList.get(i).getFirstname() != null && teamMemberList.get(i).getFirstname().length() > 0) {
-                                            teamMemberArrayList.add(teamMemberList.get(i).getFirstname() + "(" + teamMemberList.get(i).getEmpcode().toString() + ")");
+//                                            teamMemberArrayList.add(teamMemberList.get(i).getFirstname() + "(" + teamMemberList.get(i).getEmpcode() + ")");
+                                            employeeIdMap.put(teamMemberList.get(i).getFirstname(), teamMemberList.get(i).getEmpcode());
                                         }
                                     }
-                                    if (teamMemberArrayList.size() > 1) {
-                                        ArrayAdapter<String> adapterTeamMember = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, teamMemberArrayList);
+
+                                    if (employeeIdMap.size() > 1) {
+                                        ArrayAdapter<String> adapterTeamMember = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList(employeeIdMap.keySet()));
                                         emp_name_list.setAdapter(adapterTeamMember);
                                     }
                                 }
