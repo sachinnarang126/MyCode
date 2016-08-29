@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import java.math.BigInteger;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,16 +53,17 @@ public class LoginActivity extends AppBaseCompatActivity {
                         showToast(getString(R.string.error_password));
                     } else {
                         hideKeyboard();
-                        getToken(edt_password.getText().toString().trim(), RetrofitClient.getRetrofitClient(), deviceID);
+                        passwordSandwich(edt_password.getText().toString().trim(), deviceID, RetrofitClient.getRetrofitClient());
+                        //getToken(edt_password.getText().toString().trim(), RetrofitClient.getRetrofitClient(), deviceID);
                     }
                 }
             });
         }
     }
 
-    /*private void passwordSandwich(String pass, String salt, String deviceID, RetrofitApiService apiService) {
+    private void passwordSandwich(String pass, String deviceID, RetrofitApiService apiService) {
         manageProgressBar(true);
-        String saltHex = toHex(salt);
+        String saltHex = toHex(Constant.SALT);
         String sandwich = "";
 
         for (int i = 0; i < pass.length(); i++) {
@@ -72,12 +75,12 @@ public class LoginActivity extends AppBaseCompatActivity {
             sandwich = sandwich.replaceAll(" ", "");
         }
 
-        getToken(pass, apiService, deviceID);
+        getToken(sandwich, apiService, deviceID);
     }
-*/
-    /*public String toHex(String arg) {
+
+    public String toHex(String arg) {
         return String.format("%4x", new BigInteger(1, arg.getBytes()));
-    }*/
+    }
 
 
     public void getToken(String sandwich, final RetrofitApiService apiService, String deviceID) {
@@ -108,7 +111,7 @@ public class LoginActivity extends AppBaseCompatActivity {
                         final User user = new User();
                         user.setUser_email(edt_username.getText().toString().trim());
                         user.setPassword(pass);
-                        user.setToken("a152e84173914146e4bc4f391sd0f686ebc4f31");
+                        user.setToken("a152e84173914146e4bc4f391sd0f686ebc4f31");//
                         user.setIp_address("10.20.3.133");
                         user.setMac_address("00-22-19-1A-F8-02");
                         user.setUser_agent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0");

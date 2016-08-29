@@ -2,8 +2,8 @@ package xyz.truehrms.utils;
 
 public class Constant {
 
-    //    public static final String SALT = "#5a7k=";
-    public static final String BASE_URL = "http://104.40.63.102:8096/api/";
+        public static final String SALT = "#5a7k=";
+    public static final String BASE_URL = "http://104.40.63.102:8097/api/";
     //    public static final String BASE_URL = "http://10.20.1.17:8094/api/";
     public static final String GET_TOKEN = "AppToken/GetToken";
     public static final String VALIDATE_TOKEN = "PortalAuthentication/ValidateWithSingleSignOnWithApi";

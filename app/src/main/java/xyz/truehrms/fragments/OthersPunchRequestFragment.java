@@ -18,6 +18,7 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -47,8 +48,8 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
     private String year, currentYear;
     private int spinnerInitCount = 0;
     private int month, currentMonth;
-    private ArrayAdapter adapter_Employee;
-    private List<String> employ_name_list;
+//    private List<String> employeeNameList;
+    private HashMap<String, String> employeeIDMap;
     private String empID;
     private MyPunchRequestAdapter myPunchRequestAdapter;
     private RelativeLayout container_no_data;
@@ -130,9 +131,10 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String SelectedText = other_punch_emp_name.getText().toString().trim();
-                int start = other_punch_emp_name.getText().toString().trim().indexOf("(");
+                /*int start = other_punch_emp_name.getText().toString().trim().indexOf("(");
                 int end = other_punch_emp_name.getText().toString().trim().indexOf(")");
-                empID = SelectedText.substring(start + 1, end);
+                empID = SelectedText.substring(start + 1, end);*/
+                empID = employeeIDMap.get(SelectedText);
                 System.out.println("SelectedText " + SelectedText + " empID " + empID);
                 getAttendanceFromServer(empID, String.valueOf(month + 1), year);
             }
@@ -161,10 +163,20 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
                 public void onResponse(Call<EmployeeListForTeamLead> call, Response<EmployeeListForTeamLead> response) {
                     if (response.isSuccessful()) {
                         if (response.body().getStatusCode() == 200.0) {
+                            employeeIDMap = new HashMap<>();
+//                            employeeNameList = response.body().getResult();
+                            for (String data : response.body().getResult()) {
+                                String idArray[] = data.split(" - ");
+                                try {
+                                    employeeIDMap.put(idArray[0], idArray[1]);
+                                } catch (IndexOutOfBoundsException e) {
+                                    e.printStackTrace();
+                                }
+                            }
 
-                            employ_name_list = response.body().getResult();
-                            adapter_Employee = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, employ_name_list);
-                            other_punch_emp_name.setAdapter(adapter_Employee);
+                            ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList(employeeIDMap.keySet()));
+//                            ArrayAdapter adapter_Employee = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, new ArrayList(employeeIDMap.values()));
+                            other_punch_emp_name.setAdapter(adapter);
                         }
                     }
                 }
