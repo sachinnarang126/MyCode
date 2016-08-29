@@ -245,22 +245,26 @@ public class ApplyLeaveFragment extends AppCompatFragment implements AdapterView
                             }
                             hideProgressBar();
                         } else {
+                            hasLeaveSummary = true;
                             hideProgressBarForceFully();
-                            displayDataReloadAlert();
+//                            displayDataReloadAlert();
                         }
                     } else {
+                        hasLeaveSummary = true;
                         hideProgressBarForceFully();
-                        displayDataReloadAlert();
+//                        displayDataReloadAlert();
                     }
+
+                    hideProgressBar();
 
                 }
 
                 @Override
                 public void onFailure(Call<LeaveSummary> call, Throwable t) {
-                    hasLeaveSummary = false;
+//                    hasLeaveSummary = false;
                     hideProgressBarForceFully();
-                    displayDataReloadAlert();
-                    t.printStackTrace();
+                    /*displayDataReloadAlert();
+                    t.printStackTrace();*/
                 }
             });
         } else {

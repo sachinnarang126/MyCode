@@ -13,7 +13,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -293,7 +297,7 @@ public class PersonalInformationFragment extends AppCompatFragment {
             editProfile.setMotherName(edt_mthr.getText().toString().trim());
             editProfile.setBloodgroup(et_blood_group.getText().toString().trim());
             editProfile.setCity(et_city.getText().toString().trim());
-            editProfile.setDob(calender_dob.getText().toString().trim());
+            editProfile.setDob(changeDateFormatOfString("dd/MM/yyyy", "MM/dd/yyyy", calender_dob.getText().toString().trim()));
             editProfile.setEmergencycontactnumber(et_emergency_contact.getText().toString().trim());
 
             if (rb_female.isChecked()) {
@@ -386,4 +390,19 @@ public class PersonalInformationFragment extends AppCompatFragment {
         }
         return true;
     }
+
+    public String changeDateFormatOfString(String inputFormat, String outputFormat, String inputDate) {
+        Date parsed;
+        String outputDate = "";
+        SimpleDateFormat df_input = new SimpleDateFormat(inputFormat, Locale.getDefault());
+        SimpleDateFormat df_output = new SimpleDateFormat(outputFormat, Locale.getDefault());
+        try {
+            parsed = df_input.parse(inputDate);
+            outputDate = df_output.format(parsed);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return outputDate;
+    }
+
 }
