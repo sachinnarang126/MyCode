@@ -48,7 +48,7 @@ public class OthersLeaveRequestFragment extends AppCompatFragment implements Ada
     private List<MyLeaveRequests.Result.LeaveListResult> resultList;
     private int spinnerInitCount = 0;
     private int month, currentMonth;
-//    private ArrayAdapter adapter_Employee;
+    //    private ArrayAdapter adapter_Employee;
     //    private List<String> employeeNameList;
     private HashMap<String, String> employeeIDMap;
     private String empID;
@@ -115,7 +115,7 @@ public class OthersLeaveRequestFragment extends AppCompatFragment implements Ada
         empID = String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId());
 
         if (((DashboardActivity) getActivity()).userDetailsObj.getFirstname() != null) {
-            String empName = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() + "(" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode().toString() + ")";
+            String empName = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() + " " + ((DashboardActivity) getActivity()).userDetailsObj.getLastname() + " (" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode() + ")";
             otherPunchEmpName.setText(empName);
         }
 

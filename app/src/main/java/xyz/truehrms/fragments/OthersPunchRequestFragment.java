@@ -117,7 +117,7 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
         empID = String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId());
 
         if (((DashboardActivity) getActivity()).userDetailsObj.getFirstname() != null) {
-            String empName = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() + "(" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode().toString() + ")";
+            String empName = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() +" " +((DashboardActivity) getActivity()).userDetailsObj.getLastname() + " (" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode() + ")";
             other_punch_emp_name.setText(empName);
         }
 

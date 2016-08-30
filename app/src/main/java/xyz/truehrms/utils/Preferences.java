@@ -5,9 +5,8 @@ import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
-import xyz.truehrms.parameters.User;
-import xyz.truehrms.bean.Permissions;
 import xyz.truehrms.bean.ValidateResponse;
+import xyz.truehrms.parameters.User;
 
 public class Preferences {
 
@@ -63,6 +62,7 @@ public class Preferences {
     public void saveUserDetails(String key, ValidateResponse.Result user) {
         Gson obj = new Gson();
         String jsonString = obj.toJson(user);
+        System.out.println("------json----" + jsonString);
         editor.putString(key, jsonString);
         editor.commit();
     }

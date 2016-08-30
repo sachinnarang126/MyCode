@@ -116,7 +116,7 @@ public class AttendanceFragment extends AppCompatFragment {
         userID = String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId());
 
         if (((DashboardActivity) getActivity()).userDetailsObj.getFirstname() != null) {
-            String name = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() + "(" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode().toString() + ")";
+            String name = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() + " " + ((DashboardActivity) getActivity()).userDetailsObj.getLastname() + " (" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode() + ")";
             emp_name_list.setText(name);
         }
 
