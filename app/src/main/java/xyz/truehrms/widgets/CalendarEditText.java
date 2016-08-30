@@ -23,10 +23,11 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
 
     private final int MAX_CLICK_DURATION = 200;
     public DatePickerDialog dpd;
-    public boolean enableTouch = true;
+//    public boolean enableTouch = true;
     private Activity ctx;
     private long startClickTime;
     private boolean isPopup;
+    private boolean isEnableTouch = true;
 
     public CalendarEditText(Context context) {
         super(context);
@@ -72,8 +73,6 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        if (!enableTouch)
-            return;
         if (focused) {
 //            performFiltering("", 0);
             InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -88,23 +87,25 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN: {
-                startClickTime = Calendar.getInstance().getTimeInMillis();
-                break;
-            }
-            case MotionEvent.ACTION_UP: {
-                long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
-                if (clickDuration < MAX_CLICK_DURATION) {
-                    if (isPopup) {
-                        dismissDropDown();
-                        isPopup = false;
-                    } else {
-                        requestFocus();
-                        dpd.show(ctx.getFragmentManager(), "Datepickerdialog");
+        if (isEnableTouch){
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    startClickTime = Calendar.getInstance().getTimeInMillis();
+                    break;
+                }
+                case MotionEvent.ACTION_UP: {
+                    long clickDuration = Calendar.getInstance().getTimeInMillis() - startClickTime;
+                    if (clickDuration < MAX_CLICK_DURATION) {
+                        if (isPopup) {
+                            dismissDropDown();
+                            isPopup = false;
+                        } else {
+                            requestFocus();
+                            dpd.show(ctx.getFragmentManager(), "Datepickerdialog");
 
 //                        showDropDown();
-                        isPopup = true;
+                            isPopup = true;
+                        }
                     }
                 }
             }
@@ -149,4 +150,8 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
         if (dpd != null)
             dpd.initialize();
     }*/
+
+    public void setEnableTouch(boolean enableTouch) {
+        isEnableTouch = enableTouch;
+    }
 }

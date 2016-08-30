@@ -77,7 +77,7 @@ public class PersonalInformationFragment extends AppCompatFragment {
         Calendar calendar = Calendar.getInstance();
         calendar.roll(Calendar.YEAR, -18);
         calender_dob.setMaxDate(calendar);
-        calender_dob.enableTouch = false;
+        calender_dob.setEnableTouch(false);
 
         et_blood_group = (EditText) view.findViewById(R.id.et_blood_group);
         et_emergency_contact = (EditText) view.findViewById(R.id.et_emergency_contact);
@@ -139,7 +139,7 @@ public class PersonalInformationFragment extends AppCompatFragment {
 
                             calender_dob.setFocusableInTouchMode(true);
                             calender_dob.setEnabled(true);
-                            calender_dob.enableTouch = true;
+                            calender_dob.setEnableTouch(true);
 
                             et_blood_group.setFocusableInTouchMode(true);
                             et_blood_group.setEnabled(true);
@@ -169,7 +169,7 @@ public class PersonalInformationFragment extends AppCompatFragment {
 
                             calender_dob.setFocusableInTouchMode(false);
                             calender_dob.setEnabled(false);
-                            calender_dob.enableTouch = false;
+                            calender_dob.setEnableTouch(false);
 
                             et_blood_group.setFocusableInTouchMode(false);
                             et_blood_group.setEnabled(false);
@@ -212,7 +212,7 @@ public class PersonalInformationFragment extends AppCompatFragment {
 
                         calender_dob.setFocusableInTouchMode(true);
                         calender_dob.setEnabled(true);
-                        calender_dob.enableTouch = true;
+                        calender_dob.setEnableTouch(true);
 
                         et_blood_group.setFocusableInTouchMode(true);
                         et_blood_group.setEnabled(true);
@@ -244,7 +244,7 @@ public class PersonalInformationFragment extends AppCompatFragment {
 
                         calender_dob.setFocusableInTouchMode(false);
                         calender_dob.setEnabled(false);
-                        calender_dob.enableTouch = false;
+                        calender_dob.setEnableTouch(false);
 
                         et_blood_group.setFocusableInTouchMode(false);
                         et_blood_group.setEnabled(false);
@@ -323,11 +323,11 @@ public class PersonalInformationFragment extends AppCompatFragment {
                             fathr_nm_edt.setText(result.getFatherName());
                             edt_permnt_adr.setText(result.getAddress2());
                             edt_curnt_adr.setText(result.getAddress1());
-                            try {
+                            /*try {
                                 calender_dob.setText(result.getDob().split("T")[0]);
                             } catch (Exception e) {
                                 e.printStackTrace();
-                            }
+                            }*/
                             et_blood_group.setText(result.getBloodgroup());
                             if (!result.getEmergencycontactnumber().isEmpty()) {
                                 et_emergency_contact.setText(result.getEmergencycontactnumber());

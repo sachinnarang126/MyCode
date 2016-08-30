@@ -126,6 +126,7 @@
                             android:layout_height="wrap_content"
                             android:enabled="false"
                             android:hint="@string/blood_group"
+                            android:maxLength="3"
                             android:inputType="text"
                             android:maxLines="1"
                             android:singleLine="true"

@@ -9,7 +9,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
-        versionName "THRA_v0.04_081916"
+        versionName "THRA_v0.05_083016"
     }
     buildTypes {
         release {
