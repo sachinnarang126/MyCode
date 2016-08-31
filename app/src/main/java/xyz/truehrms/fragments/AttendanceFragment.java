@@ -131,7 +131,7 @@ public class AttendanceFragment extends AppCompatFragment {
         Calendar calendar = Calendar.getInstance();
         month = currentMonth = calendar.get(Calendar.MONTH);
         currentYear = year = String.valueOf(calendar.get(Calendar.YEAR));
-        ArrayAdapter<String> adapter_months = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> adapter_months = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_dropdown_item_1line, getResources().getStringArray(R.array.month_array));
 
         spinner_month.setAdapter(adapter_months);
