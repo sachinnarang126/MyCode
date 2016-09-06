@@ -2,7 +2,6 @@ package xyz.truehrms.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -12,9 +11,9 @@ import xyz.truehrms.basecontroller.AppBaseCompatActivity;
 import xyz.truehrms.bean.Permissions;
 import xyz.truehrms.bean.ValidateResponse;
 import xyz.truehrms.dataholder.DataHolder;
+import xyz.truehrms.parameters.User;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.User;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.utils.Preferences;
 
@@ -25,19 +24,13 @@ public class SplashActivity extends AppBaseCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        final boolean isUserLoggedIn = getPreference().getStatus(Constant.IS_TOKEN_GOT);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (isUserLoggedIn) {
-                    User um = getPreference().getUser(Constant.SAVE_USER);
-                    validateUser(um, getPreference().getToken(Constant.TOKEN));
-                } else {
-                    openLoginActivity();
-                }
-            }
+        boolean isUserLoggedIn = getPreference().getStatus(Constant.IS_TOKEN_GOT);
 
-        }, 1000);
+        if (isUserLoggedIn) {
+            User um = getPreference().getUser(Constant.SAVE_USER);
+            validateUser(um, getPreference().getToken(Constant.TOKEN));
+        } else
+            openLoginActivity();
     }
 
     void validateUser(User um, final String token) {
@@ -78,10 +71,6 @@ public class SplashActivity extends AppBaseCompatActivity {
                                 getPreference().setHasAdminControl(false);
                                 getPermissions(obj.getUserID(), token, apiService);
                             }
-                            /*getPreference().setHasAdminControl(true);
-                            Intent in = new Intent(SplashActivity.this, DashboardActivity.class);
-                            startActivity(in);
-                            finish();*/
                         } else {
                             openLoginActivity();
                         }
