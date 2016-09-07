@@ -54,9 +54,6 @@ public class Constant {
     public static final String AVATAR = "Avatar";
     public static final String IS_LIKED = "IS_LIKED";
 
-    /*public static final int SUPER_ADMIN = 1;
-    public static final int ADMIN = 2;*/
-
 
     /**
      * Non-Admin Permission

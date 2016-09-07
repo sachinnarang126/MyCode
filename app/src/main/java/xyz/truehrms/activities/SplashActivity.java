@@ -108,7 +108,7 @@ public class SplashActivity extends AppBaseCompatActivity {
             permissioncall.enqueue(new Callback<Permissions>() {
                 @Override
                 public void onResponse(Call<Permissions> call, Response<Permissions> response) {
-                    if (response.body().getStatusCode() == 200.0) {
+                    if (response.isSuccessful() && response.body().getStatusCode() == 200.0) {
                         DataHolder.getInstance().setResultList(response.body().getResult());
                         Intent in = new Intent(SplashActivity.this, DashboardActivity.class);
                         startActivity(in);

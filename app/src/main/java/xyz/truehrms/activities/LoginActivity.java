@@ -192,13 +192,13 @@ public class LoginActivity extends AppBaseCompatActivity {
                 @Override
                 public void onResponse(Call<Permissions> call, Response<Permissions> response) {
                     manageProgressBar(false);
-                    if (response.body().getStatusCode() == 200.0) {
+                    if (response.isSuccessful() && response.body().getStatusCode() == 200.0) {
                         DataHolder.getInstance().setResultList(response.body().getResult());
                         Intent in = new Intent(LoginActivity.this, DashboardActivity.class);
                         startActivity(in);
                         finish();
                     } else {
-                        showToast(response.body().getErrors().toString());
+                        showToast(getString(R.string.server_error));
                     }
                 }
 

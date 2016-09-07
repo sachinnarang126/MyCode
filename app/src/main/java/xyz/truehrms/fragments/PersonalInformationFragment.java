@@ -266,13 +266,32 @@ public class PersonalInformationFragment extends AppCompatFragment {
         et_city.setFilters(new InputFilter[]{filter});
     }
 
-    private boolean isValidFields(String contactNo) {
+    private boolean isValidFields(String dob, String fatherName, String motherName, String contactNo, String currentAddress,
+                                  String permanentAddress, String city) {
 
-        if (sp_blood_group.getSelectedItemPosition() == 0) {
+        if (dob.isEmpty()) {
+            ((DashboardActivity) getActivity()).showToast("Please enter date of birth");
+            return false;
+        } else if (fatherName.isEmpty()) {
+            ((DashboardActivity) getActivity()).showToast("Please enter father name");
+            return false;
+        } else if (motherName.isEmpty()) {
+            ((DashboardActivity) getActivity()).showToast("Please enter mother name");
+            return false;
+        } else if (sp_blood_group.getSelectedItemPosition() == 0) {
             ((DashboardActivity) getActivity()).showToast("Please select blood group");
             return false;
-        } else if (!contactNo.isEmpty() && contactNo.length() < 10) {
+        } else if (contactNo.length() < 10) {
             ((DashboardActivity) getActivity()).showToast(getString(R.string.valid_contact_no));
+            return false;
+        } else if (currentAddress.isEmpty()) {
+            ((DashboardActivity) getActivity()).showToast("please enter current address");
+            return false;
+        } else if (permanentAddress.isEmpty()) {
+            ((DashboardActivity) getActivity()).showToast("please enter permanent address");
+            return false;
+        } else if (city.isEmpty()) {
+            ((DashboardActivity) getActivity()).showToast("please enter city");
             return false;
         }
         return true;
@@ -297,7 +316,10 @@ public class PersonalInformationFragment extends AppCompatFragment {
             v.setTag("hide");
             manageViews(true, (ImageView) v, rb_male, rb_female);
         } else {
-            if (!isValidFields(et_emergency_contact.getText().toString().trim())) {
+            if (!isValidFields(calender_dob.getText().toString().trim(), et_father_name.getText().toString().trim(),
+                    et_mother_name.getText().toString().trim(), et_emergency_contact.getText().toString().trim(),
+                    et_current_address.getText().toString().trim(), et_permanent_address.getText().toString().trim(),
+                    et_city.getText().toString().trim())) {
                 return;
             }
             v.setTag("show");
