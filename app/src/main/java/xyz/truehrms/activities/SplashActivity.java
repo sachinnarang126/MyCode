@@ -94,13 +94,13 @@ public class SplashActivity extends AppBaseCompatActivity {
         if (isInternetAvailable()) {
             Call<Permissions> permissioncall;
             if (!isServiceCallExist(Constant.GET_EMPLOYEE_PERMISSION)) {
-                permissioncall = apiService.getPermissions(token, ID);
+                permissioncall = apiService.getPermissions(token, ID, Constant.PRODUCT_ID);
                 putServiceCallInServiceMap(permissioncall, Constant.GET_EMPLOYEE_PERMISSION);
             } else {
                 permissioncall = getServiceCallIfExist(Constant.GET_EMPLOYEE_PERMISSION);
 
                 if (permissioncall == null) {
-                    permissioncall = apiService.getPermissions(token, ID);
+                    permissioncall = apiService.getPermissions(token, ID, Constant.PRODUCT_ID);
                     putServiceCallInServiceMap(permissioncall, Constant.GET_EMPLOYEE_PERMISSION);
                 }
             }

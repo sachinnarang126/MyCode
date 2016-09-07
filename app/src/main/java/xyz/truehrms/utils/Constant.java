@@ -53,6 +53,7 @@ public class Constant {
     public static final String SELECTED_POST_CONTENT = "Selected_post_content";
     public static final String AVATAR = "Avatar";
     public static final String IS_LIKED = "IS_LIKED";
+    public static final int PRODUCT_ID = 3;
 
 
     /**

@@ -185,7 +185,7 @@ public class LoginActivity extends AppBaseCompatActivity {
     private void getPermissions(int ID, String token, RetrofitApiService apiService) {
         if (isInternetAvailable()) {
 
-            Call<Permissions> call = apiService.getPermissions(token, ID);
+            Call<Permissions> call = apiService.getPermissions(token, ID, Constant.PRODUCT_ID);
             putServiceCallInServiceMap(call, Constant.GET_EMPLOYEE_PERMISSION);
 
             call.enqueue(new Callback<Permissions>() {

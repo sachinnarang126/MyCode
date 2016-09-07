@@ -48,7 +48,7 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
     private String year, currentYear;
     private int spinnerInitCount = 0;
     private int month, currentMonth;
-//    private List<String> employeeNameList;
+    //    private List<String> employeeNameList;
     private HashMap<String, String> employeeIDMap;
     private String empID;
     private MyPunchRequestAdapter myPunchRequestAdapter;
@@ -117,7 +117,7 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
         empID = String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId());
 
         if (((DashboardActivity) getActivity()).userDetailsObj.getFirstname() != null) {
-            String empName = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() +" " +((DashboardActivity) getActivity()).userDetailsObj.getLastname() + " (" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode() + ")";
+            String empName = ((DashboardActivity) getActivity()).userDetailsObj.getFirstname() + " " + ((DashboardActivity) getActivity()).userDetailsObj.getLastname() + " (" + ((DashboardActivity) getActivity()).userDetailsObj.getEmpcode() + ")";
             other_punch_emp_name.setText(empName);
         }
 
@@ -148,12 +148,14 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
             Call<EmployeeListForTeamLead> employeeListCall;
 
             if (!isServiceCallExist(Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE)) {
-                employeeListCall = retrofitApiService.getEmployeesByNameorEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN), str);
+                employeeListCall = retrofitApiService.getEmployeesByNameOrEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN),
+                        str, ((DashboardActivity) getActivity()).userDetailsObj.getCompanyId());
                 putServiceCallInServiceMap(employeeListCall, Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE);
             } else {
                 employeeListCall = getServiceCallIfExist(Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE);
                 if (employeeListCall == null) {
-                    employeeListCall = retrofitApiService.getEmployeesByNameorEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN), str);
+                    employeeListCall = retrofitApiService.getEmployeesByNameOrEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN),
+                            str, ((DashboardActivity) getActivity()).userDetailsObj.getCompanyId());
                     putServiceCallInServiceMap(employeeListCall, Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE);
                 }
             }

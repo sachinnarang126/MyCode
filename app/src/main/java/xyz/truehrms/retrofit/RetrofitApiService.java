@@ -96,7 +96,7 @@ public interface RetrofitApiService {
 
 
     @GET(Constant.GET_EMPLOYEE_PERMISSION)
-    Call<Permissions> getPermissions(@Header("x-Token") String token, @Query("empId") int empID);
+    Call<Permissions> getPermissions(@Header("x-Token") String token, @Query("empId") int empID,@Query("productId") int productID);
 
     // getting Person In Charge
     @GET(Constant.GET_PERSON_IN_CHARGE)
@@ -140,7 +140,7 @@ public interface RetrofitApiService {
     Call<RejectAttendance> rejectAttendance(@Header("x-Token") String token, @Query("id") String id, @Query("employee_id") String employee_id);
 
     @GET(Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE)
-    Call<EmployeeListForTeamLead> getEmployeesByNameorEmpCode(@Header("x-Token") String token, @Query("findStr") String str);
+    Call<EmployeeListForTeamLead> getEmployeesByNameOrEmpCode(@Header("x-Token") String token, @Query("findStr") String str, @Query("companyid")int companyID);
 
     @POST(Constant.MY_LEAVE_REQUESTS)
     Call<MyLeaveRequests> myLeaveRequests(@Header("x-Token") String token, @Body Parameters serviceParams);

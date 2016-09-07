@@ -232,13 +232,15 @@ public class AttendanceFragment extends AppCompatFragment {
             Call<EmployeeListForTeamLead> employeeListCall;
 
             if (!isServiceCallExist(Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE)) {
-                employeeListCall = retrofitApiService.getEmployeesByNameorEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN), str);
+                employeeListCall = retrofitApiService.getEmployeesByNameOrEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN),
+                        str, ((DashboardActivity) getActivity()).userDetailsObj.getCompanyId());
                 putServiceCallInServiceMap(employeeListCall, Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE);
             } else {
                 employeeListCall = getServiceCallIfExist(Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE);
 
                 if (employeeListCall == null) {
-                    employeeListCall = retrofitApiService.getEmployeesByNameorEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN), str);
+                    employeeListCall = retrofitApiService.getEmployeesByNameOrEmpCode(((DashboardActivity) getActivity()).getPreference().getToken(Constant.TOKEN),
+                            str, ((DashboardActivity) getActivity()).userDetailsObj.getCompanyId());
                     putServiceCallInServiceMap(employeeListCall, Constant.GET_EMPLOYEES_BY_NAME_OR_EMP_CODE);
                 }
             }
