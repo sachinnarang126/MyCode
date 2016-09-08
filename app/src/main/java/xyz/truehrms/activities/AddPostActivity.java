@@ -47,9 +47,7 @@ public class AddPostActivity extends AppBaseCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (DataHolder.getInstance() == null) {
-            restartApp();
-        }
+        if (DataHolder.getInstance() == null) restartApp();
     }
 
     @Override
