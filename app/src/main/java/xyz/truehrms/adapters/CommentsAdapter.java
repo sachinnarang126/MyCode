@@ -8,7 +8,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.siyamed.shapeimageview.RoundedImageView;
@@ -109,7 +109,8 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
     }
 
     public class MyViewHolder extends BaseSwipeOpenViewHolder implements OnCancelPicassoCall {
-        public LinearLayout contentView;
+        //        public LinearLayout contentView;
+        public RelativeLayout contentView;
         public TextView deleteButton;
         public TextView editButton;
         private TextView mCommentBy, mCommentText, mCommentDate;
@@ -121,7 +122,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
             mCommentText = (TextView) view.findViewById(R.id.tv_commentText);
             mCommentDate = (TextView) view.findViewById(R.id.tv_commentDate);
             mAvatar = (RoundedImageView) view.findViewById(R.id.icn_avatar);
-            contentView = (LinearLayout) view.findViewById(R.id.content_view);
+            contentView = (RelativeLayout) view.findViewById(R.id.content_view);
             deleteButton = (TextView) view.findViewById(R.id.delete_button);
             editButton = (TextView) view.findViewById(R.id.edit_button);
 
