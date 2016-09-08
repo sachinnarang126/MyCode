@@ -3,6 +3,7 @@ package xyz.truehrms.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -45,6 +46,7 @@ public class DashboardActivity extends AppBaseCompatActivity implements View.OnC
     private RoundedImageView user_profile_pic;
     private boolean hasToShowMenu = true;
     private NavigationView navigationViewRight;
+    private boolean doubleBackToExitPressedOnce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -303,7 +305,21 @@ public class DashboardActivity extends AppBaseCompatActivity implements View.OnC
                 loadDashboardFragment();
             }
         } else {
-            finish();
+            if (doubleBackToExitPressedOnce) {
+                finish();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            showToast("Please press BACK again to exit");
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce = false;
+                }
+            }, 2000);
         }
     }
 
