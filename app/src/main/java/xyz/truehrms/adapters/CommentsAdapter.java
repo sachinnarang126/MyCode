@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -71,7 +73,9 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
         }
 
         if (mCommentList.get(position).getComment() != null) {
-            holder.mCommentText.setText(mCommentList.get(position).getComment().equalsIgnoreCase("") ? "NA" : Html.fromHtml(mCommentList.get(position).getComment()));
+            String data = Html.fromHtml(mCommentList.get(position).getComment()).toString();
+            data = StringEscapeUtils.unescapeJava(data);
+            holder.mCommentText.setText(data);
         }
 
         String imageUrl = mCommentList.get(position).getEmpImage().trim();

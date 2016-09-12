@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.util.List;
 
 import atownsend.swipeopenhelper.SwipeOpenItemTouchHelper;
@@ -77,14 +79,17 @@ public class CommentsFragment extends AppCompatFragment implements CommentsAdapt
             public void onClick(View v) {
                 ((DashboardActivity) getActivity()).hideKeyboard();
                 if (!isProgressBarVisible()) {
-                    if (comment_content.getText().toString().trim().length() > 0) {
+                    String commentText = comment_content.getText().toString().trim();
+                    commentText = StringEscapeUtils.escapeJava(commentText);
+                    System.out.println("---->>>>commentText = " + commentText);
+                    if (commentText.length() > 0) {
                         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
                             btn_comment_submit.setEnabled(false);
                             progressBar.setVisibility(View.VISIBLE);
 
                             AddComment addComment = new AddComment();
                             addComment.setCommentby(String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()));
-                            addComment.setCommentcontent(comment_content.getText().toString());
+                            addComment.setCommentcontent(commentText);
                             addComment.setPostedfiles("");
                             addComment.setPostedFilesTitle("");
                             addComment.setPostid(selectedPostId);
