@@ -27,9 +27,9 @@ import xyz.truehrms.activities.DashboardActivity;
 import xyz.truehrms.adapters.MyPunchRequestAdapter;
 import xyz.truehrms.basecontroller.AppCompatFragment;
 import xyz.truehrms.bean.MyAttendanceRequest;
+import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.widgets.EndlessRecyclerOnScrollListener;
 
@@ -203,7 +203,7 @@ public class MyPunchRequestFragment extends AppCompatFragment implements Adapter
                                                     myAttendanceRequestCall1.enqueue(new Callback<MyAttendanceRequest>() {
                                                         @Override
                                                         public void onResponse(Call<MyAttendanceRequest> call, Response<MyAttendanceRequest> response) {
-                                                            if (response.isSuccessful()) {
+                                                            if (response.isSuccessful() && response.body().getStatusCode() == 200.0) {
                                                                 if (response.body().getResult().getAaData() != null) {
                                                                     datumList.addAll(response.body().getResult().getAaData());
                                                                     myPunchRequestAdapter.notifyDataSetChanged();

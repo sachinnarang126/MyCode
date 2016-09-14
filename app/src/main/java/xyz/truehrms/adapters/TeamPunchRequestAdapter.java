@@ -194,7 +194,8 @@ public class TeamPunchRequestAdapter extends RecyclerView.Adapter<TeamPunchReque
             rejectAttendanceCall.enqueue(new Callback<RejectAttendance>() {
                 @Override
                 public void onResponse(Call<RejectAttendance> call, Response<RejectAttendance> response) {
-                    teamPunchRequestFragment.callTeamRequest(month, year);
+                    if (response.isSuccessful() && response.body().getStatusCode() == 200.0)
+                        teamPunchRequestFragment.callTeamRequest(month, year);
                 }
 
                 @Override
@@ -216,7 +217,8 @@ public class TeamPunchRequestAdapter extends RecyclerView.Adapter<TeamPunchReque
             approveRequestAttendanceCall.enqueue(new Callback<ApproveRequestAttendance>() {
                 @Override
                 public void onResponse(Call<ApproveRequestAttendance> call, Response<ApproveRequestAttendance> response) {
-                    teamPunchRequestFragment.callTeamRequest(month, year);
+                    if (response.isSuccessful() && response.body().getStatusCode() == 200.0)
+                        teamPunchRequestFragment.callTeamRequest(month, year);
                 }
 
                 @Override

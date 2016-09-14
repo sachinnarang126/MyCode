@@ -29,9 +29,9 @@ import xyz.truehrms.adapters.TeamLeaveRequestAdapter;
 import xyz.truehrms.basecontroller.AppCompatFragment;
 import xyz.truehrms.bean.GetLeaveRequestTeam;
 import xyz.truehrms.bean.TeamForManager;
+import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.widgets.EndlessRecyclerOnScrollListener;
 
@@ -308,9 +308,11 @@ public class TeamLeaveRequestFragment extends AppCompatFragment implements Adapt
                                                     getLeaveReqTeamCall.enqueue(new Callback<GetLeaveRequestTeam>() {
                                                         @Override
                                                         public void onResponse(Call<GetLeaveRequestTeam> call, Response<GetLeaveRequestTeam> response) {
-                                                            resultList.addAll(response.body().getResult().getLeaveListResult());
-                                                            teamLeaveRequestAdapter.notifyDataSetChanged();
-                                                            globalResultList.addAll(response.body().getResult().getLeaveListResult());
+                                                            if (response.isSuccessful() && response.body().getStatusCode() == 200.0) {
+                                                                resultList.addAll(response.body().getResult().getLeaveListResult());
+                                                                teamLeaveRequestAdapter.notifyDataSetChanged();
+                                                                globalResultList.addAll(response.body().getResult().getLeaveListResult());
+                                                            }
                                                         }
 
                                                         @Override

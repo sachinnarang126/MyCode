@@ -29,9 +29,9 @@ import xyz.truehrms.adapters.TeamPunchRequestAdapter;
 import xyz.truehrms.basecontroller.AppCompatFragment;
 import xyz.truehrms.bean.ApprovedAttendance;
 import xyz.truehrms.bean.TeamForManager;
+import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.widgets.EndlessRecyclerOnScrollListener;
 
@@ -303,9 +303,11 @@ public class TeamPunchRequestFragment extends AppCompatFragment implements Adapt
                                                     apprvdAttndCall.enqueue(new Callback<ApprovedAttendance>() {
                                                         @Override
                                                         public void onResponse(Call<ApprovedAttendance> call, Response<ApprovedAttendance> response) {
-                                                            allTeamMemberList.addAll(response.body().getResult().getAaData());
-                                                            teamPunchRequestAdapter.notifyDataSetChanged();
-                                                            allTeamMemberGlobalList.addAll(response.body().getResult().getAaData());
+                                                            if (response.isSuccessful() && response.body().getStatusCode() == 200.0){
+                                                                allTeamMemberList.addAll(response.body().getResult().getAaData());
+                                                                teamPunchRequestAdapter.notifyDataSetChanged();
+                                                                allTeamMemberGlobalList.addAll(response.body().getResult().getAaData());
+                                                            }
                                                         }
 
                                                         @Override

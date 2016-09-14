@@ -101,7 +101,7 @@ public class AddPostActivity extends AppBaseCompatActivity {
             addPostCall.enqueue(new Callback<xyz.truehrms.bean.AddPost>() {
                 @Override
                 public void onResponse(Call<xyz.truehrms.bean.AddPost> call, Response<xyz.truehrms.bean.AddPost> response) {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful() && response.body().getStatusCode() == 200.0) {
                         etPostContentTitle.setText("");
                         et_post_content_description.setText("");
                         Intent intent = getIntent();

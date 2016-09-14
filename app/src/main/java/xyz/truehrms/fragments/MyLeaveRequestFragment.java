@@ -27,9 +27,9 @@ import xyz.truehrms.activities.DashboardActivity;
 import xyz.truehrms.adapters.MyLeaveRequestAdapter;
 import xyz.truehrms.basecontroller.AppCompatFragment;
 import xyz.truehrms.bean.MyLeaveRequests;
+import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
-import xyz.truehrms.parameters.Parameters;
 import xyz.truehrms.utils.Constant;
 import xyz.truehrms.widgets.EndlessRecyclerOnScrollListener;
 
@@ -208,7 +208,7 @@ public class MyLeaveRequestFragment extends AppCompatFragment implements Adapter
                                                     myLeaveRequestsCall.enqueue(new Callback<MyLeaveRequests>() {
                                                         @Override
                                                         public void onResponse(Call<MyLeaveRequests> call, Response<MyLeaveRequests> response) {
-                                                            if (response.isSuccessful()) {
+                                                            if (response.isSuccessful() && response.body().getStatusCode() == 200.0) {
                                                                 if (response.body().getResult().getLeaveListResult() != null) {
                                                                     resultList.addAll(response.body().getResult().getLeaveListResult());
                                                                     myLeaveRequestAdapter.notifyDataSetChanged();

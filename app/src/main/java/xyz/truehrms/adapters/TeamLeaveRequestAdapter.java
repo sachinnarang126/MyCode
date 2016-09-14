@@ -151,7 +151,8 @@ public class TeamLeaveRequestAdapter extends RecyclerView.Adapter<TeamLeaveReque
             rejectCall.enqueue(new Callback<RejectLeave>() {
                 @Override
                 public void onResponse(Call<RejectLeave> call, Response<RejectLeave> response) {
-                    teamLeaveRequestFragment.callTeamRequestService(month, year);
+                    if (response.isSuccessful())
+                        teamLeaveRequestFragment.callTeamRequestService(month, year);
                 }
 
                 @Override
@@ -171,7 +172,8 @@ public class TeamLeaveRequestAdapter extends RecyclerView.Adapter<TeamLeaveReque
             cancelCall.enqueue(new Callback<CancelLeaveRequest>() {
                 @Override
                 public void onResponse(Call<CancelLeaveRequest> call, Response<CancelLeaveRequest> response) {
-                    teamLeaveRequestFragment.callTeamRequestService(month, year);
+                    if (response.isSuccessful() && response.body().getStatusCode() == 200.0)
+                        teamLeaveRequestFragment.callTeamRequestService(month, year);
                 }
 
                 @Override
@@ -190,7 +192,8 @@ public class TeamLeaveRequestAdapter extends RecyclerView.Adapter<TeamLeaveReque
             rejectAttendanceCall.enqueue(new Callback<ApproveLeave>() {
                 @Override
                 public void onResponse(Call<ApproveLeave> call, Response<ApproveLeave> response) {
-                    teamLeaveRequestFragment.callTeamRequestService(month, year);
+                    if (response.isSuccessful())
+                        teamLeaveRequestFragment.callTeamRequestService(month, year);
                 }
 
                 @Override

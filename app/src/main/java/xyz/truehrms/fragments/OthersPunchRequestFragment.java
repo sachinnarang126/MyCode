@@ -302,7 +302,7 @@ public class OthersPunchRequestFragment extends AppCompatFragment implements Ada
                                                     myAttendanceRequestCall1.enqueue(new Callback<MyAttendanceRequest>() {
                                                         @Override
                                                         public void onResponse(Call<MyAttendanceRequest> call, Response<MyAttendanceRequest> response) {
-                                                            if (response.isSuccessful()) {
+                                                            if (response.isSuccessful() && response.body().getStatusCode() == 200.0) {
                                                                 if (response.body().getResult().getAaData() != null) {
                                                                     datumList.addAll(response.body().getResult().getAaData());
                                                                     myPunchRequestAdapter.notifyDataSetChanged();

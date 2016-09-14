@@ -62,7 +62,6 @@ public class Preferences {
     public void saveUserDetails(String key, ValidateResponse.Result user) {
         Gson obj = new Gson();
         String jsonString = obj.toJson(user);
-        System.out.println("------json----" + jsonString);
         editor.putString(key, jsonString);
         editor.commit();
     }
