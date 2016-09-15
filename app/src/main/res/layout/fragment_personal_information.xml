@@ -213,7 +213,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:hint="@string/current_address"
+                            android:hint="Address 1"
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textSize="14sp" />
@@ -229,7 +229,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:hint="@string/permanent_address"
+                            android:hint="Address 2"
                             android:maxLines="1"
                             android:singleLine="true"
                             android:textSize="14sp" />

@@ -127,16 +127,16 @@ public class ProfileFragment extends AppCompatFragment {
     }
 
     public void addFragmentForViewPager(String empCode, String name, String email, String phone, String designation, String department,
-                                        String doj, String teamSize, String shiftTiming, String extension, String role, String manager, ArrayList<String> reportingToMe, String fatherName, String motherName,
+                                        String doj, String teamSize, String location, String shiftTiming, String extension, String role, String manager, ArrayList<String> reportingToMe, String fatherName, String motherName,
                                         String currentAddress, String permanentAddress, int sex, String dob, String bloodGroup, String emergencyContact, String city) {
         ArrayList<Fragment> fragments = new ArrayList<>();
-        ProfessionalFragment professionalFragment = ProfessionalFragment.getInstance(empCode, name, email, phone, designation, department, doj, teamSize, shiftTiming,
-                extension, role, manager, reportingToMe);
+        BasicInformationFragment basicInformationFragment = BasicInformationFragment.getInstance(empCode, name, email, phone, designation,
+                department, doj, teamSize, location, shiftTiming, extension, role, manager, reportingToMe);
 
         PersonalInformationFragment personalInformationFragment = PersonalInformationFragment.getInstance(fatherName, motherName,
                 currentAddress, permanentAddress, sex, dob, bloodGroup, emergencyContact, city);
 
-        fragments.add(professionalFragment);
+        fragments.add(basicInformationFragment);
         fragments.add(personalInformationFragment);
         fragments.add(LeaveFragment.getInstance());
 
@@ -146,7 +146,7 @@ public class ProfileFragment extends AppCompatFragment {
         viewPager.setAdapter(profilePagradaptr);
         //set tab with view pager
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setText(R.string.professional);
+        tabLayout.getTabAt(0).setText(R.string.basic);
         tabLayout.getTabAt(1).setText(R.string.personal);
         tabLayout.getTabAt(2).setText(R.string.leave);
         progressBar.setVisibility(View.GONE);
@@ -180,7 +180,7 @@ public class ProfileFragment extends AppCompatFragment {
 
                             addFragmentForViewPager(result.getEmpcode(), result.getFirstname() + " " + result.getLastname(),
                                     result.getEmail(), result.getPersonalContact(), result.getDesignationDesignation1(),
-                                    result.getDivisionname(), result.getDoj(), String.valueOf(result.getReportingtomecount()),
+                                    result.getDivisionname(), result.getDoj(), String.valueOf(result.getReportingtomecount()), result.getLocation(),
                                     result.getShiftname(), String.valueOf(result.getExtension()), result.getRoleName(), result.getReportingTo(),
                                     new ArrayList<>(result.getReportingtome()), result.getFathername(), result.getMothername(),
                                     result.getAddress1(), result.getAddress2(), result.getSex(), result.getDob(), result.getBloodgroup(),

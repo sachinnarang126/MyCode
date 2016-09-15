@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,11 @@ import java.util.ArrayList;
 
 import xyz.truehrms.R;
 
-public class ProfessionalFragment extends Fragment {
+public class BasicInformationFragment extends Fragment {
 
-    public static ProfessionalFragment getInstance(String empCode, String name, String email, String phone, String designation, String department,
-                                                   String doj, String teamSize, String shiftTiming, String extension, String role, String manager, ArrayList<String> reportingToMe) {
+    public static BasicInformationFragment getInstance(String empCode, String name, String email, String phone, String designation,
+                                                       String department, String doj, String teamSize, String location, String shiftTiming,
+                                                       String extension, String role, String manager, ArrayList<String> reportingToMe) {
         Bundle bundle = new Bundle();
         bundle.putString("empCode", empCode);
         bundle.putString("name", name);
@@ -27,21 +29,22 @@ public class ProfessionalFragment extends Fragment {
         bundle.putString("department", department);
         bundle.putString("doj", doj);
         bundle.putString("teamSize", teamSize);
+        bundle.putString("location", location);
         bundle.putString("shiftTiming", shiftTiming);
         bundle.putString("extension", extension);
         bundle.putString("role", role);
 
         bundle.putString("manager", manager);
         bundle.putStringArrayList("reportingToMe", reportingToMe);
-        ProfessionalFragment professionalFragment = new ProfessionalFragment();
-        professionalFragment.setArguments(bundle);
-        return professionalFragment;
+        BasicInformationFragment basicInformationFragment = new BasicInformationFragment();
+        basicInformationFragment.setArguments(bundle);
+        return basicInformationFragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_professional, container, false);
+        View view = inflater.inflate(R.layout.fragment_basic_information, container, false);
         TextView txt_emp_id = (TextView) view.findViewById(R.id.txt_emp_id_value);
         TextView txt_name = (TextView) view.findViewById(R.id.txt_name_value);
         TextView txt_email = (TextView) view.findViewById(R.id.txt_email_value);
@@ -54,7 +57,9 @@ public class ProfessionalFragment extends Fragment {
         TextView txt_extension = (TextView) view.findViewById(R.id.txt_extension_value);
         TextView txt_role = (TextView) view.findViewById(R.id.txt_role_value);
         TextView txt_manager = (TextView) view.findViewById(R.id.txt_manager_value);
+        TextView tx_location_value = (TextView) view.findViewById(R.id.tx_location_value);
         TextView txt_reporting_to_me = (TextView) view.findViewById(R.id.txt_reporting_to_me_value);
+        txt_reporting_to_me.setMovementMethod(new ScrollingMovementMethod());
 //        txt_departmnt.setText();
 //        txt_roll.setText();
         Bundle bundle = getArguments();
@@ -69,6 +74,7 @@ public class ProfessionalFragment extends Fragment {
             txt_department.setText(bundle.getString("department"));
             txt_doj.setText(bundle.getString("doj"));
             txt_team_size.setText(bundle.getString("teamSize"));
+            tx_location_value.setText(bundle.getString("location"));
             txt_shift_timing.setText(bundle.getString("shiftTiming"));
             txt_extension.setText(bundle.getString("extension"));
             txt_role.setText(bundle.getString("role"));

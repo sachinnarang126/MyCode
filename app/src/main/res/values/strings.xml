@@ -82,7 +82,7 @@
     <string name="hint_add_comment">Add Comment&#8230;</string>
 
     <!--profile txts -->
-    <string name="emp_info">Employee Information</string>
+    <string name="basic_info">Basic Information</string>
     <string name="emp_id">Employee ID:</string>
     <string name="company">Company:</string>
     <string name="shift_timing">Shift Timing:</string>
@@ -91,6 +91,7 @@
     <string name="phone">Phone No:</string>
     <string name="designation">Designation:</string>
     <string name="team_size">Team Size:</string>
+    <string name="location">Location:</string>
     <string name="extension">Extension:</string>
     <string name="role">Role:</string>
 
@@ -104,11 +105,11 @@
     <!--icon_profile tabs-->
     <string name="professional">Professional</string>
     <string name="personal">Personal</string>
-    <string name="basic">basic</string>
+    <string name="basic">Basic</string>
     <string name="leave">Leave</string>
-    <string name="emp_uses_info">Employee Uses Information</string>
+    <string name="professional_info">Professional Information</string>
     <string name="doj">Date of joining:</string>
-    <string name="emp_email">Employee Email:</string>
+    <string name="emp_email">Email:</string>
     <string name="official_email">Official Email:</string>
     <string name="dob">Date of Birth</string>
     <string name="personal_contact">Personal Contact NO:</string>

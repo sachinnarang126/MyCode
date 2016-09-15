@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,6 +85,7 @@ public class PostDetailFragment extends AppCompatFragment {
         TextView tvPostUserName = (TextView) rootView.findViewById(R.id.post_user_name);
         TextView tvPostTime = (TextView) rootView.findViewById(R.id.post_time);
         TextView tvPostText = (TextView) rootView.findViewById(R.id.post_text);
+        tvPostText.setMovementMethod(new ScrollingMovementMethod());
         TextView tvPostTextDesc = (TextView) rootView.findViewById(R.id.post_text_description);
         likes_img = (ImageView) rootView.findViewById(R.id.likes_img);
 
