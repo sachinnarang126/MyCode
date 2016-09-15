@@ -48,5 +48,14 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <xyz.truehrms.widgets.MaterialSpinner
+        android:id="@+id/spinner_post_visibility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:ms_arrowSize="12dp"
+        app:ms_enableFloatingLabel="true"
+        app:ms_floatingLabelText="Select Post Visibility"
+        app:ms_hint="Select Post Visibility" />
+
 
 </LinearLayout>

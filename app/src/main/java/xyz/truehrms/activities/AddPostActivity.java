@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import retrofit2.Call;
@@ -19,10 +20,12 @@ import xyz.truehrms.parameters.AddPost;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
 import xyz.truehrms.utils.Constant;
+import xyz.truehrms.widgets.MaterialSpinner;
 
 
 public class AddPostActivity extends AppBaseCompatActivity {
     private EditText etPostContentTitle, et_post_content_description;
+    private MaterialSpinner spinner_post_visibility;
     private boolean isServiceExecuting;
 
     @Override
@@ -41,6 +44,11 @@ public class AddPostActivity extends AppBaseCompatActivity {
 
         etPostContentTitle = (EditText) findViewById(R.id.et_post_content);
         et_post_content_description = (EditText) findViewById(R.id.et_post_content_title);
+        spinner_post_visibility = (MaterialSpinner) findViewById(R.id.spinner_post_visibility);
+
+        String arr[] = new String[]{"Visible to All", "Visible to Team"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, arr);
+        spinner_post_visibility.setAdapter(adapter);
 
     }
 
@@ -65,8 +73,12 @@ public class AddPostActivity extends AppBaseCompatActivity {
                         showToast(getString(R.string.enter_title));
                     } else if (et_post_content_description.getText().toString().trim().length() == 0) {
                         showToast(getString(R.string.enter_content));
+                    } else if (spinner_post_visibility.getSelectedItemPosition() == 0) {
+                        showToast(getString(R.string.select_post_visibility));
                     } else {
-                        addPost(etPostContentTitle.getText().toString().trim(), et_post_content_description.getText().toString().trim());
+                        addPost(etPostContentTitle.getText().toString().trim(),
+                                et_post_content_description.getText().toString().trim(),
+                                String.valueOf(spinner_post_visibility.getSelectedItemPosition()));
                     }
                 }
                 return true;
@@ -81,15 +93,14 @@ public class AddPostActivity extends AppBaseCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void addPost(String postContent, String description) {
+    private void addPost(String postContent, String description, String postVisibility) {
         if (isInternetAvailable()) {
-
-            //    User addUserPost = new User(Constant.ADD_POSTS, employeeId, postContent);
             String token = getPreference().getToken(Constant.TOKEN);
             String employeeId = String.valueOf(getPreference().getUserDetails(Constant.USER_DETAIL_OBJ).getId());
             AddPost addPost = new AddPost();
             addPost.setPostcontent(postContent);
             addPost.setPostedby(employeeId);
+            addPost.setVisibleTo(postVisibility);
             addPost.setCompany_id(String.valueOf(getPreference().getUserDetails(Constant.USER_DETAIL_OBJ).getCompanyId()));
             addPost.setPostcontentDesp(description);
             RetrofitApiService apiService = RetrofitClient.getRetrofitClient();

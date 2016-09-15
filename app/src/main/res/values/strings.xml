@@ -164,6 +164,7 @@
     <!-- Toast Text-->
     <string name="enter_title">Please enter post title</string>
     <string name="enter_content">Please enter post content</string>
+    <string name="select_post_visibility">Please select post visibility</string>
     <string name="success">Success</string>
     <string name="server_error">Server error</string>
     <string name="madatory_fields">All fields are mandatory</string>
