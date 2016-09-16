@@ -14,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -25,6 +24,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import xyz.truehrms.Interface.OnLoadMoreListener;
 import xyz.truehrms.R;
 import xyz.truehrms.activities.AddPostActivity;
 import xyz.truehrms.activities.DashboardActivity;
@@ -37,12 +37,10 @@ import xyz.truehrms.dataholder.DataHolder;
 import xyz.truehrms.retrofit.RetrofitApiService;
 import xyz.truehrms.retrofit.RetrofitClient;
 import xyz.truehrms.utils.Constant;
-import xyz.truehrms.widgets.EndlessRecyclerOnScrollListener;
 
-public class DashboardFragment extends AppCompatFragment implements ViewPager.OnPageChangeListener {
+public class DashboardFragment extends AppCompatFragment implements ViewPager.OnPageChangeListener, OnLoadMoreListener {
     private final int REQUEST_CODE_ADD_POST = 10;
     private List<Post.Result> postsList;
-    private Button btn_load_more;
     private String token;
     private ProgressBar progressBar;
     private DashboardPagerAdapter dashboardPagerAdapter;
@@ -50,9 +48,9 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
     private LinearLayout pagerIndicator;
     private ImageView[] dots;
     private int dotsCount;
-    private boolean isLast = false;
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
+    private int pageIndex = 1;
 
     public static DashboardFragment getInstance() {
         return new DashboardFragment();
@@ -76,7 +74,7 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
         dashboardPagerFragment = new DashboardPagerFragment();
         fragmentArrayList.add(dashboardPagerFragment);
-        btn_load_more = (Button) view.findViewById(R.id.btn_load_more);
+//        btn_load_more = (Button) view.findViewById(R.id.btn_load_more);
 
         fragmentArrayList.add(new DashboardPagerFragment());
         fragmentArrayList.add(new DashboardPagerFragment());
@@ -95,9 +93,12 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
             }
         });
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(linearLayoutManager);
         postsList = new ArrayList<>();
-        postAdapter = new PostAdapter(getActivity(), postsList);
-        recyclerView.setAdapter(postAdapter);
+        /*postAdapter = new PostAdapter(this, getActivity(), postsList, recyclerView);
+        recyclerView.setAdapter(postAdapter)*/
+        ;
 
         if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
 //            fab.setVisibility(View.VISIBLE);
@@ -120,8 +121,10 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
             if (requestCode == REQUEST_CODE_ADD_POST && data.hasExtra("post_added")) {
                 if (data.getBooleanExtra("post_added", false)) {
                     if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
+                        pageIndex = 1;
                         getPosts();
                     } else if (((DashboardActivity) getActivity()).hasPermission(Constant.DASHBOARD_VIEW)) {
+                        pageIndex = 1;
                         getPosts();
                     } else {
                         ((DashboardActivity) getActivity()).showToast("You don't have permission to view post");
@@ -193,19 +196,12 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
             progressBar.setVisibility(View.VISIBLE);
             RetrofitApiService retrofitApiService = RetrofitClient.getRetrofitClient();
-            Call<Post> postsCall;
+            final Call<Post> postsCall;
 
-            if (!isServiceCallExist(Constant.GET_POSTS)) {
-                postsCall = retrofitApiService.getPosts(token, String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getCompanyId()), "1", "10", String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()), "0");
-                putServiceCallInServiceMap(postsCall, Constant.GET_POSTS);
-            } else {
-                postsCall = getServiceCallIfExist(Constant.GET_POSTS);
+//            int lastVisiblePosition = recyclerView.getLayoutManager().
 
-                if (postsCall == null) {
-                    postsCall = retrofitApiService.getPosts(token, String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getCompanyId()), "1", "10", String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()), "0");
-                    putServiceCallInServiceMap(postsCall, Constant.GET_POSTS);
-                }
-            }
+            postsCall = retrofitApiService.getPosts(token, String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getCompanyId()), String.valueOf(pageIndex), "10", String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()), "0");
+            putServiceCallInServiceMap(postsCall, Constant.GET_POSTS);
 
             postsCall.enqueue(new Callback<Post>() {
                 @Override
@@ -214,11 +210,19 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                         if (response.body().getStatusCode() == 200.0) {
                             if (response.body().getResult() != null && response.body().getResult().size() > 0) {
                                 if (postsList != null) {
-                                    postsList.clear();
+
+                                    if (pageIndex == 1)
+                                        postsList.clear();
+
                                     postsList.addAll(response.body().getResult());
-                                    postAdapter.notifyDataSetChanged();
+                                    postAdapter = new PostAdapter(DashboardFragment.this, getActivity(), postsList, recyclerView);
+
+                                    recyclerView.setAdapter(postAdapter);
+                                    postAdapter.setLoaded();
+                                    postAdapter.setOnLoadMoreListener(DashboardFragment.this);
+//                                    postAdapter.notifyDataSetChanged();
                                 }
-                                setAdapter();
+//                                setAdapter();
                             }
                             progressBar.setVisibility(View.GONE);
                         } else {
@@ -244,15 +248,15 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
     }
 
     public void setAdapter() {
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
 
-        int totalRecord = 0;
+
+        /*int totalRecord = 0;
         if (postsList.size() > 0)
-            totalRecord = postsList.get(0).getTotalRecord();
+            totalRecord = postsList.get(0).getTotalRecord();*/
 
-        final int finalTotalRecord = totalRecord;
-        recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
+//        final int finalTotalRecord = totalRecord;
+
+        /*recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
             @Override
             public void scroolabove(int current_page) {
                 if (current_page == 1) {
@@ -313,7 +317,7 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                     }
                 });
             }
-        });
+        });*/
     }
 
     @Override
@@ -391,5 +395,22 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onLoadMore() {
+        System.out.println("List size--->" + postsList.size());
+        if (postsList.size() % 10 == 0) {
+            postsList.add(null);
+            postAdapter.notifyItemInserted(postsList.size() - 1);
+        }
+    }
+
+    public void updateList(/*String check, String id, int position*/) {
+        postsList.remove(postsList.size() - 1);
+        postAdapter.notifyItemRemoved(postsList.size());
+        System.out.println("list sizeee before update---->" + postsList.size());
+        pageIndex++;
+        getPosts();
     }
 }

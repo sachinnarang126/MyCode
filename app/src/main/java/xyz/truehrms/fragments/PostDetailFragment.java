@@ -147,7 +147,6 @@ public class PostDetailFragment extends AppCompatFragment {
         likes_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("----PostDetailFragment.onClick");
                 if (!isProgressBarVisible()) {
                     if (isLiked) {
                         if (((DashboardActivity) getActivity()).isInternetAvailable()) {

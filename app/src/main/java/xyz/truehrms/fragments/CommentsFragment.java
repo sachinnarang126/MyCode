@@ -150,6 +150,7 @@ public class CommentsFragment extends AppCompatFragment implements CommentsAdapt
                             if (commentLists.size() > 0) {
                                 commentsAdapter = new CommentsAdapter(getActivity(), commentLists, CommentsFragment.this);
                                 commentsRecyclerView.setAdapter(commentsAdapter);
+                                commentsRecyclerView.scrollToPosition(commentLists.size() - 1);
 
                                 helper = new SwipeOpenItemTouchHelper(new SwipeOpenItemTouchHelper.SimpleCallback(
                                         SwipeOpenItemTouchHelper.START | SwipeOpenItemTouchHelper.END));
