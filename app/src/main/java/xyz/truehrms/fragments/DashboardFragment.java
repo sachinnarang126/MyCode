@@ -74,7 +74,6 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
         dashboardPagerFragment = new DashboardPagerFragment();
         fragmentArrayList.add(dashboardPagerFragment);
-//        btn_load_more = (Button) view.findViewById(R.id.btn_load_more);
 
         fragmentArrayList.add(new DashboardPagerFragment());
         fragmentArrayList.add(new DashboardPagerFragment());
@@ -96,9 +95,6 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         postsList = new ArrayList<>();
-        /*postAdapter = new PostAdapter(this, getActivity(), postsList, recyclerView);
-        recyclerView.setAdapter(postAdapter)*/
-        ;
 
         if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
 //            fab.setVisibility(View.VISIBLE);
@@ -196,11 +192,11 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
             progressBar.setVisibility(View.VISIBLE);
             RetrofitApiService retrofitApiService = RetrofitClient.getRetrofitClient();
-            final Call<Post> postsCall;
 
-//            int lastVisiblePosition = recyclerView.getLayoutManager().
+            final int lastVisiblePosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+            System.out.println("-----lastVisiblePosition = " + lastVisiblePosition);
 
-            postsCall = retrofitApiService.getPosts(token, String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getCompanyId()), String.valueOf(pageIndex), "10", String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()), "0");
+            Call<Post> postsCall = retrofitApiService.getPosts(token, String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getCompanyId()), String.valueOf(pageIndex), "10", String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()), "0");
             putServiceCallInServiceMap(postsCall, Constant.GET_POSTS);
 
             postsCall.enqueue(new Callback<Post>() {
@@ -218,11 +214,11 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                                     postAdapter = new PostAdapter(DashboardFragment.this, getActivity(), postsList, recyclerView);
 
                                     recyclerView.setAdapter(postAdapter);
+                                    if (lastVisiblePosition > 0)
+                                        recyclerView.scrollToPosition(lastVisiblePosition);
                                     postAdapter.setLoaded();
                                     postAdapter.setOnLoadMoreListener(DashboardFragment.this);
-//                                    postAdapter.notifyDataSetChanged();
                                 }
-//                                setAdapter();
                             }
                             progressBar.setVisibility(View.GONE);
                         } else {
@@ -245,79 +241,6 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         } else {
             ((DashboardActivity) getActivity()).showToast(getString(R.string.error_internet));
         }
-    }
-
-    public void setAdapter() {
-
-
-        /*int totalRecord = 0;
-        if (postsList.size() > 0)
-            totalRecord = postsList.get(0).getTotalRecord();*/
-
-//        final int finalTotalRecord = totalRecord;
-
-        /*recyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(linearLayoutManager) {
-            @Override
-            public void scroolabove(int current_page) {
-                if (current_page == 1) {
-                    btn_load_more.setVisibility(View.GONE);
-                } else {
-                    if (isLast) {
-                        btn_load_more.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-
-            @Override
-            public void onLoadMore(final int current_page) {
-                if (finalTotalRecord > ((current_page - 1) * 10)) {
-                    isLast = true;
-                    btn_load_more.setVisibility(View.VISIBLE);
-                } else {
-                    btn_load_more.setVisibility(View.GONE);
-                }
-                btn_load_more.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        isLast = false;
-                        if (((DashboardActivity) getActivity()).isInternetAvailable()) {
-                            RetrofitApiService retrofitApiService = RetrofitClient.getRetrofitClient();
-                            progressBar.setVisibility(View.VISIBLE);
-                            Call<Post> postsCall = retrofitApiService.getPosts(token, "1", String.valueOf(current_page), "10",
-                                    String.valueOf(((DashboardActivity) getActivity()).userDetailsObj.getId()), "0");
-                            putServiceCallInServiceMap(postsCall, Constant.GET_POSTS);
-                            postsCall.enqueue(new Callback<Post>() {
-                                @Override
-                                public void onResponse(Call<Post> call, Response<Post> response) {
-                                    if (response.isSuccessful()) {
-                                        if (response.body().getStatusCode() == 200.0) {
-                                            int ListCount = postAdapter.getItemCount();
-                                            postsList.addAll(response.body().getResult());
-                                            postAdapter.notifyItemRangeInserted(ListCount, postsList.size() - 1);
-                                            progressBar.setVisibility(View.GONE);
-                                        } else {
-                                            progressBar.setVisibility(View.GONE);
-                                        }
-                                    } else {
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<Post> call, Throwable t) {
-                                    progressBar.setVisibility(View.GONE);
-                                    t.printStackTrace();
-                                }
-                            });
-                        } else {
-                            ((DashboardActivity) getActivity()).showToast(getString(R.string.error_internet));
-                        }
-
-                        btn_load_more.setVisibility(View.GONE);
-                    }
-                });
-            }
-        });*/
     }
 
     @Override
@@ -385,7 +308,6 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-//                                getActivity().finish();
                             }
                         })
                         .setCancelable(false)
@@ -406,7 +328,7 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         }
     }
 
-    public void updateList(/*String check, String id, int position*/) {
+    public void updateList() {
         postsList.remove(postsList.size() - 1);
         postAdapter.notifyItemRemoved(postsList.size());
         System.out.println("list sizeee before update---->" + postsList.size());

@@ -82,9 +82,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        /*View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_post, parent, false);
-        return new ViewHolder(view);*/
-
         if (viewType == VIEW_TYPE_ITEM) {
             return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_post, parent, false));
         } else if (viewType == VIEW_TYPE_LOADING) {
@@ -207,7 +204,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             txt_post = (TextView) itemView.findViewById(R.id.post_text);
             text_post_description = (TextView) itemView.findViewById(R.id.post_text_description);
             itemView.setOnClickListener(this);
-            //commentLayout = (LinearLayout) itemView.findViewById(R.id.comment_layout);
         }
 
         @Override
@@ -231,7 +227,6 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((DashboardActivity) context).startFragmentTransaction(mFragment, tag, R.id.fragmentContainer);
             ((DashboardActivity) context).disableSwipeFromRightNavigation();
             ((DashboardActivity) context).manageOtherAppNavigation(false);
-//            transaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         }
 
         @Override
