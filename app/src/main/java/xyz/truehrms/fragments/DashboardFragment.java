@@ -99,11 +99,11 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
 //            fab.setVisibility(View.VISIBLE);
             getPunchInDetails();
-            getPosts();
+            getPosts(false);
         } else if (((DashboardActivity) getActivity()).hasPermission(Constant.DASHBOARD_VIEW)) {
 //            fab.setVisibility(View.VISIBLE);
             getPunchInDetails();
-            getPosts();
+            getPosts(false);
         } else {
             //            fab.setVisibility(View.GONE);
             ((DashboardActivity) getActivity()).showToast("You don't have permission to view post");
@@ -118,10 +118,10 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                 if (data.getBooleanExtra("post_added", false)) {
                     if (((DashboardActivity) getActivity()).getPreference().hasAdminControl()) {
                         pageIndex = 1;
-                        getPosts();
+                        getPosts(false);
                     } else if (((DashboardActivity) getActivity()).hasPermission(Constant.DASHBOARD_VIEW)) {
                         pageIndex = 1;
-                        getPosts();
+                        getPosts(false);
                     } else {
                         ((DashboardActivity) getActivity()).showToast("You don't have permission to view post");
                     }
@@ -188,7 +188,7 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         }
     }
 
-    private void getPosts() {
+    private void getPosts(final boolean scrollToLastVisiblePosition) {
         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
             progressBar.setVisibility(View.VISIBLE);
             RetrofitApiService retrofitApiService = RetrofitClient.getRetrofitClient();
@@ -214,7 +214,7 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                                     postAdapter = new PostAdapter(DashboardFragment.this, getActivity(), postsList, recyclerView);
 
                                     recyclerView.setAdapter(postAdapter);
-                                    if (lastVisiblePosition > 0)
+                                    if (scrollToLastVisiblePosition && lastVisiblePosition > 0)
                                         recyclerView.scrollToPosition(lastVisiblePosition);
                                     postAdapter.setLoaded();
                                     postAdapter.setOnLoadMoreListener(DashboardFragment.this);
@@ -301,7 +301,7 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-                                getPosts();
+                                getPosts(false);
                             }
                         })
                         .setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
@@ -333,6 +333,6 @@ public class DashboardFragment extends AppCompatFragment implements ViewPager.On
         postAdapter.notifyItemRemoved(postsList.size());
         System.out.println("list sizeee before update---->" + postsList.size());
         pageIndex++;
-        getPosts();
+        getPosts(true);
     }
 }

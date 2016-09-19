@@ -20,6 +20,8 @@ import android.widget.TextView;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -94,7 +96,7 @@ public class PostDetailFragment extends AppCompatFragment {
         tvPostTime.setText(getArguments().getString(Constant.SELECTED_POST_TIME));
         tvPostText.setText(getArguments().getString(Constant.SELECTED_POST_CONTENT));
 
-        tvPostTextDesc.setText(Html.fromHtml(getArguments().getString("postDesc")));
+        tvPostTextDesc.setText(StringEscapeUtils.unescapeJava(Html.fromHtml(getArguments().getString("postDesc")).toString()));
 
         isLiked = getArguments().getBoolean(Constant.IS_LIKED);
 

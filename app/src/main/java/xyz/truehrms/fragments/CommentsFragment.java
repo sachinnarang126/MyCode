@@ -81,7 +81,6 @@ public class CommentsFragment extends AppCompatFragment implements CommentsAdapt
                 if (!isProgressBarVisible()) {
                     String commentText = comment_content.getText().toString().trim();
                     commentText = StringEscapeUtils.escapeJava(commentText);
-                    System.out.println("---->>>>commentText = " + commentText);
                     if (commentText.length() > 0) {
                         if (((DashboardActivity) getActivity()).isInternetAvailable()) {
                             btn_comment_submit.setEnabled(false);

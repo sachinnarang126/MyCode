@@ -10,6 +10,8 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,6 +97,7 @@ public class AddPostActivity extends AppBaseCompatActivity {
 
     private void addPost(String postContent, String description, String postVisibility) {
         if (isInternetAvailable()) {
+            description = StringEscapeUtils.escapeJava(description);
             String token = getPreference().getToken(Constant.TOKEN);
             String employeeId = String.valueOf(getPreference().getUserDetails(Constant.USER_DETAIL_OBJ).getId());
             AddPost addPost = new AddPost();

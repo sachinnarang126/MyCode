@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.github.siyamed.shapeimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringEscapeUtils;
+
 import java.util.List;
 
 import xyz.truehrms.Interface.OnCancelPicassoCall;
@@ -98,8 +100,10 @@ public class PostAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             holder.txt_dashbrd_usr_nm.setText(postsList.get(position).getEmpName());
 
             holder.txt_dashbrd_post_time.setText(postsList.get(position).getPostedOnString());
-            holder.txt_post.setText(Html.fromHtml(postsList.get(position).getPostcontent()));
-            holder.text_post_description.setText(Html.fromHtml(postsList.get(position).getPostcontentDesp()));
+
+            String postDescription = StringEscapeUtils.unescapeJava(Html.fromHtml(postsList.get(position).getPostcontentDesp()).toString());
+            holder.txt_post.setText(postsList.get(position).getPostcontent());
+            holder.text_post_description.setText(postDescription);
 
             String data;
             if (postsList.get(position).getLikeCounts() != null) {
