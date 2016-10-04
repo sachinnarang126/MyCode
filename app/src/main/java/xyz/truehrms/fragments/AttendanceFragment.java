@@ -318,12 +318,12 @@ public class AttendanceFragment extends AppCompatFragment {
                                     }
                                 }
                             } else {
-                                try {
+                                /*try {
                                     if (isAdded() && getActivity() != null)
                                         ((DashboardActivity) getActivity()).showToast(response.body().getErrors().get(0).toString());
                                 } catch (Exception e) {
                                     e.printStackTrace();
-                                }
+                                }*/
                             }
                         }
                     }

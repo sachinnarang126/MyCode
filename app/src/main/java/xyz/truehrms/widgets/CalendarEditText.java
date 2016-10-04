@@ -131,7 +131,7 @@ public class CalendarEditText extends MaterialAutoCompleteTextView implements Ad
 
     @Override
     public void onDateSet(com.wdullaer.materialdatetimepicker.date.DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = "" + dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+        String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
         setText(date);
         //ApplyLeaveFragment.chk();
     }

@@ -13,102 +13,118 @@
         android:layout_gravity="center_horizontal"
         android:visibility="gone" />
 
-    <android.support.design.widget.TextInputLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/punch_miss_date"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
-            android:gravity="start"
-            android:hint="@string/date"
-            android:inputType="date"
-            android:padding="8dp"
-            android:textSize="14sp" />
+            android:orientation="vertical">
 
-    </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/punch_miss_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:gravity="start"
+                    android:hint="@string/date"
+                    android:inputType="date"
+                    android:padding="8dp"
+                    android:textSize="14sp" />
+
+            </android.support.design.widget.TextInputLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/punch_miss_timein"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:gravity="start"
-                android:hint="@string/time_in"
-                android:padding="8dp"
-                android:textSize="14sp" />
+                android:layout_marginTop="12dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_clock_time_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name"
-            android:padding="8dp"
-            android:src="@drawable/ic_clock" />
-    </RelativeLayout>
+                    <EditText
+                        android:id="@+id/punch_miss_timein"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:gravity="start"
+                        android:hint="@string/time_in"
+                        android:padding="8dp"
+                        android:textSize="14sp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
+                </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img_clock_time_in"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_clock" />
+            </RelativeLayout>
 
-            <EditText
-                android:id="@+id/punch_miss_timeout"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:gravity="start"
-                android:hint="@string/time_out"
-                android:padding="8dp"
-                android:textSize="14sp" />
+                android:layout_marginTop="12dp">
 
-        </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_clock_time_out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/app_name"
-            android:padding="8dp"
-            android:src="@drawable/ic_clock" />
+                    <EditText
+                        android:id="@+id/punch_miss_timeout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="false"
+                        android:gravity="start"
+                        android:hint="@string/time_out"
+                        android:padding="8dp"
+                        android:textSize="14sp" />
 
-    </RelativeLayout>
+                </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
+                <ImageView
+                    android:id="@+id/img_clock_time_out"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_clock" />
 
-        <EditText
-            android:id="@+id/reason_punch_miss_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/reason"
-            android:padding="8dp"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <EditText
+                    android:id="@+id/reason_punch_miss_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/reason"
+                    android:padding="8dp"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
 </LinearLayout>
